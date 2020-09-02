@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './admin/App';
 import * as serviceWorker from './serviceWorker';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
 import Settings from './settings/Settings';
 import State from './state/State';
 
 const routing = (
-    <Router>
+    <BrowserRouter basename="/admin">
         <Route path="/" exact component={App} testvalue={process.env.API_URL} />
         <Route path="/Settings" component={Settings} />
         <Route path="/State" component={State} />
-    </Router>
+    </BrowserRouter>
 )
 
 ReactDOM.render(routing, document.getElementById('root'));
