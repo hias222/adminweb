@@ -38,7 +38,7 @@ export default class SendDatamapping extends React.Component<Props, State> {
             .catch(console.log)
     };
 
-    private backendConfig = process.env.REACT_APP_DATAMAPPING_DIRECT === "true" ? "http://" + window.location.hostname + ":3001" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL;
+    private backendConfig = process.env.REACT_APP_DATAMAPPING_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL;
 
     getStateDatamapping() {
         fetch(this.backendConfig + "/configuration")
