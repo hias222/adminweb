@@ -4,9 +4,6 @@
   "private": true,
   "homepage": "/admin",
   "dependencies": {
-    "@babel/core": "7.13.0",
-    "@babel/helper-define-map": "^7.13.12",
-    "@babel/helper-regex": "^7.10.5",
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
     "@types/eslint": "^6.8.0",
@@ -16,7 +13,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^4.3.5",
     "caniuse-lite": "^1.0.30001031",
-    "eslint": "^7.25.0",
+    "eslint": "^6.6.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
