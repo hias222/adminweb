@@ -5,6 +5,7 @@
   "homepage": "/admin",
   "dependencies": {
     "@babel/core": "7.13.0",
+    "@babel/helper-define-map": "^7.13.12",
     "@babel/helper-regex": "^7.10.5",
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
