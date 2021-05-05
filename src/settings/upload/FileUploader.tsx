@@ -27,12 +27,12 @@ class FileUploader extends React.Component<Props, State> {
 
   //private uploadurl: string = "http://" + window.location.hostname + ":3001/upload"
 
-  private uploadurl = process.env.REACT_APP_BACKEND_DIRECT === "true" ?  window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/upload" : "http://" + window.location.hostname + ":3001/upload"
+  private uploadurl = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/upload/" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/upload/"
 
 
   constructor(props: Props) {
     super(props);
-    
+
     this.state = {
       dragging: false, file: null,
       uploadProgress: {},
@@ -112,11 +112,12 @@ class FileUploader extends React.Component<Props, State> {
     this.sendRequest(this.state.file)
     try {
       await Promise.all(promises);
-
       this.setState({ successfullUploaded: true, uploading: false });
+      console.log("success")
     } catch (e) {
       // Not Production ready! Do some error handling here instead...
-      this.setState({ successfullUploaded: true, uploading: false });
+      console.log(e)
+      this.setState({ successfullUploaded: false, uploading: false });
     }
   }
 
@@ -151,8 +152,8 @@ class FileUploader extends React.Component<Props, State> {
 
       const formData = new FormData();
       if (file !== null) {
-        console.log("upload")
-        console.log(file)
+        console.log("upload to " + this.uploadurl)
+        console.log(file.name)
         formData.append("file", file);
         req.open("POST", this.uploadurl);
         req.send(formData);
