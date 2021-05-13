@@ -23,7 +23,7 @@ export default class SendDatamapping extends React.Component<Props, State> {
         //this.getStateDatamapping = this.getStateDatamapping.bind(this);
     }
 
-    private backendConnect = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "://" + window.location.hostname + ":" + window.location.port + "/datamapping/send-mqtt"  : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/send-mqtt"
+    private backendConnect = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/datamapping/send-mqtt"  : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/send-mqtt"
 
     sendFinal = (message: string) => (event: any) => {
         console.log(this.backendConnect + " " + message)
@@ -38,7 +38,7 @@ export default class SendDatamapping extends React.Component<Props, State> {
             .catch(console.log)
     };
 
-    private backendConfig = process.env.REACT_APP_DATAMAPPING_DIRECT === "true" ? window.location.protocol + "://" + window.location.hostname + ":" + window.location.port : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL;
+    private backendConfig = process.env.REACT_APP_DATAMAPPING_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL;
 
     getStateDatamapping() {
         fetch(this.backendConfig + "/datamapping/configuration")

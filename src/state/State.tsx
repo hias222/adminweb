@@ -24,7 +24,7 @@ export default class Counter extends React.Component<Props, State> {
     
   }
 
-  private backendConnect = process.env.REACT_APP_DATAMAPPING_DIRECT === "true" ? window.location.protocol + "://" + window.location.hostname + ":" + window.location.port : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL;
+  private backendConnect = process.env.REACT_APP_DATAMAPPING_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL;
 
   getStateDatamapping() {
     fetch(this.backendConnect + "/datamapping/configuration")

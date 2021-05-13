@@ -9,7 +9,7 @@ import ClearIcon from '@material-ui/icons/RestoreFromTrash';
 
 export default class ChangeRaceStatus extends React.Component {
    
-    private backendConnect = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "://" + window.location.hostname + ":" + window.location.port + "/datamapping/send-mqtt" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/send-mqtt"
+    private backendConnect = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/datamapping/send-mqtt" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/send-mqtt"
 
     sendAction = (message: string) => (event: any) => {
         console.log(this.backendConnect + " " + message)

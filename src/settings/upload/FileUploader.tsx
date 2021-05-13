@@ -23,11 +23,11 @@ class FileUploader extends React.Component<Props, State> {
   static counter = 0;
   fileUploaderInput: HTMLElement | null = null;
 
-  private backendConnect = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "://" + window.location.hostname + ":" + window.location.port + "/datamapping/send-mqtt" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/send-mqtt"
+  private backendConnect = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/datamapping/send-mqtt" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/send-mqtt"
 
   //private uploadurl: string = "http://" + window.location.hostname + ":3001/upload"
 
-  private uploadurl = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "://" + window.location.hostname + ":" + window.location.port + "/datamapping/upload" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/upload/"
+  private uploadurl = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/datamapping/upload" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/upload/"
 
 
   constructor(props: Props) {
