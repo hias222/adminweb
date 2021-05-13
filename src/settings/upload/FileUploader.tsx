@@ -23,11 +23,11 @@ class FileUploader extends React.Component<Props, State> {
   static counter = 0;
   fileUploaderInput: HTMLElement | null = null;
 
-  private backendConnect = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/" + process.env.REACT_APP_DATAMAPPING_MQQT_REST_PATH : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/" + process.env.REACT_APP_DATAMAPPING_MQQT_REST_PATH
+  private backendConnect = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "://" + window.location.hostname + ":" + window.location.port + "/datamapping/send-mqtt" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/send-mqtt"
 
   //private uploadurl: string = "http://" + window.location.hostname + ":3001/upload"
 
-  private uploadurl = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/upload/" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/upload/"
+  private uploadurl = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "://" + window.location.hostname + ":" + window.location.port + "/datamapping/upload" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/upload/"
 
 
   constructor(props: Props) {
@@ -211,6 +211,10 @@ class FileUploader extends React.Component<Props, State> {
 
         <Button variant="contained" color="default" onClick={this.sendAction('lenex')}>
           Renew Lenex
+              <UploadIcon />
+        </Button>
+        <Button variant="contained" color="default" onClick={this.sendAction('restart')}>
+          Apply
               <UploadIcon />
         </Button>
 
