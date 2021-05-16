@@ -1,8 +1,11 @@
 import React from 'react';
 import FileUploaderPresentationalComponent from './FileUploaderPresentationalComponent'
 
-import UploadIcon from '@material-ui/icons/Watch';
+import NewRelease from '@material-ui/icons/NewReleases';
+import ReplayIcon from '@material-ui/icons/Replay';
+import UploadIcon from '@material-ui/icons/CloudUpload';
 import Button from '@material-ui/core/Button';
+import { Grid } from '@material-ui/core';
 
 //https://spin.atomicobject.com/2018/09/13/file-uploader-react-typescript/
 
@@ -183,43 +186,49 @@ class FileUploader extends React.Component<Props, State> {
 
   render() {
     return (
-      <FileUploaderPresentationalComponent
-        dragging={this.state.dragging}
-        file={this.state.file}
-        onSelectFileClick={this.onSelectFileClick}
-        onDrag={this.overrideEventDefaults}
-        onDragStart={this.overrideEventDefaults}
-        onDragEnd={this.overrideEventDefaults}
-        onDragOver={this.overrideEventDefaults}
-        onDragEnter={this.dragenterListener}
-        onDragLeave={this.dragleaveListener}
-        onDrop={this.dropListener}
-      >
-        <input
-          ref={el => (this.fileUploaderInput = el)}
-          type="file"
-          className="file-uploader__input"
-          onChange={this.onFileChanged}
-        />
-        <button
-          onClick={(event: any) => {
+      <Grid container>
+        <Grid item xs={3} spacing={3}>
+          <FileUploaderPresentationalComponent
+            dragging={this.state.dragging}
+            file={this.state.file}
+            onSelectFileClick={this.onSelectFileClick}
+            onDrag={this.overrideEventDefaults}
+            onDragStart={this.overrideEventDefaults}
+            onDragEnd={this.overrideEventDefaults}
+            onDragOver={this.overrideEventDefaults}
+            onDragEnter={this.dragenterListener}
+            onDragLeave={this.dragleaveListener}
+            onDrop={this.dropListener}
+          />
+
+          <input
+            ref={el => (this.fileUploaderInput = el)}
+            type="file"
+            className="file-uploader__input"
+            onChange={this.onFileChanged}
+          />
+        </Grid>
+        <Grid item xs={3}>
+          <Button variant="contained" color="default" onClick={(event: any) => {
             this.uploadFiles()
-          }}
-        >
-          Upload it
-        </button>
-
-        <Button variant="contained" color="default" onClick={this.sendAction('lenex')}>
-          Renew Lenex
+          }}>
+            Upload it
               <UploadIcon />
-        </Button>
-        <Button variant="contained" color="default" onClick={this.sendAction('restart')}>
-          Apply
-              <UploadIcon />
-        </Button>
-
-      </FileUploaderPresentationalComponent>
-
+          </Button>
+        </Grid>
+        <Grid item xs={3}>
+          <Button variant="contained" color="default" onClick={this.sendAction('lenex')}>
+            Renew Lenex
+              <NewRelease />
+          </Button>
+        </Grid>
+        <Grid item xs={3}>
+          <Button variant="contained" color="default" onClick={this.sendAction('restart')}>
+            Restart
+              <ReplayIcon />
+          </Button>
+        </Grid>
+      </Grid>
     );
   }
 }
