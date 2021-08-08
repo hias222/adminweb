@@ -186,8 +186,8 @@ class FileUploader extends React.Component<Props, State> {
 
   render() {
     return (
-      <Grid container>
-        <Grid item xs={3} spacing={3}>
+      <Grid container spacing={3}>
+        <Grid item xs={3} >
           <FileUploaderPresentationalComponent
             dragging={this.state.dragging}
             file={this.state.file}

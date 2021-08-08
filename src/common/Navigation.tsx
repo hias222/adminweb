@@ -6,6 +6,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import AdminIcon from '@material-ui/icons/Work';
 import SettingsIcon from '@material-ui/icons/Build';
 import StateIcon from '@material-ui/icons/TrendingUpRounded';
+import MessageIcon from '@material-ui/icons/Message';
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +28,7 @@ export default function Navigation() {
       className={classes.root}
     >
       <BottomNavigationAction component={Link} to="/" label="Admin" icon={<AdminIcon />} />
+      <BottomNavigationAction component={Link} to="/Message" label="Message" icon={<MessageIcon />} />
       <BottomNavigationAction component={Link} to="/Settings" label="Settings" icon={<SettingsIcon />} />
       <BottomNavigationAction component={Link} to="/State" label="State" icon={<StateIcon />} />
     </BottomNavigation>

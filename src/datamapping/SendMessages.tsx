@@ -79,8 +79,8 @@ export default class SendMessages extends React.Component<Props, State> {
 
   render() {
     return (
-      <Grid>
-        <Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={8} >
           <TextField
             id="standard-name"
             label="Message"
@@ -92,7 +92,7 @@ export default class SendMessages extends React.Component<Props, State> {
             onChange={this.handleChange('message')}
           />
         </Grid>
-        <Grid>
+        <Grid item xs={4}>
           <Button variant="contained" color="default" onClick={this.sendMessage('message')}>Send
           <StartIcon /></Button>
         </Grid>

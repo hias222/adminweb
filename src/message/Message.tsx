@@ -5,10 +5,10 @@ import Grid from '@material-ui/core/Grid';
 import StartIcon from '@material-ui/icons/PlayArrow';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import SendDatamapping from '../datamapping/SendDatamapping';
-import RaceModes from '../datamapping/RaceModes';
 import VideoModes from '../datamapping/VideoModes';
-import ChangeRaceStatus from '../datamapping/ChangeRaceStatus';
+
+import SendMessages from '../datamapping/SendMessages';
+import RaceModes from '../datamapping/RaceModes';
 
 interface Props {
   message: string;
@@ -23,7 +23,7 @@ interface State {
   rank: string,
 };
 
-export default class admin extends React.Component<Props, State> {
+export default class message extends React.Component<Props, State> {
   state: State = {
     message: "start",
     backend: [],
@@ -101,10 +101,17 @@ export default class admin extends React.Component<Props, State> {
           <Grid item xs={12}>
             <RaceModes />
           </Grid>
+          <Grid item xs={12}>
+            <VideoModes />
+          </Grid>
+          <Grid item xs={12}>
+            <SendMessages
+              type="standard" />
+          </Grid>
 
           <Grid item xs={4}>
             <TextField
-              id="wk-nr-app"
+              id="wk-nr"
               label="Wettkampf"
               margin="normal"
               variant="outlined"
@@ -113,59 +120,18 @@ export default class admin extends React.Component<Props, State> {
           </Grid>
           <Grid item xs={4}>
             <TextField
-              id="wk-heat-app"
+              id="wk-heat"
               label="Lauf"
               margin="normal"
               variant="outlined"
               onChange={this.handleChange('heat')}
             />
           </Grid>
-
           <Grid item xs={4}>
             <Button variant="contained" color="default" onClick={this.sendHeader()}>Send
               <StartIcon /></Button>
           </Grid>
-
-          <Grid item xs={4}>
-            <TextField
-              id="wk-lane-app"
-              label="Lane"
-              margin="normal"
-              variant="outlined"
-              onChange={this.handleChange('lane')}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <TextField
-              id="wk-rank-app"
-              label="rank"
-              margin="normal"
-              variant="outlined"
-              onChange={this.handleChange('rank')}
-            />
-          </Grid>
-        
-          <Grid item xs={4}>
-            <Button variant="contained" color="default" onClick={this.sendLane()}>Send
-              <StartIcon /></Button>
-          </Grid>
-
-          <Grid item xs={12}>
-            <ChangeRaceStatus />
-          </Grid>
-
-          <Grid item xs={12}>
-            <VideoModes />
-          </Grid>
-
-
-          <Grid item xs={12}>
-            <SendDatamapping
-              event_type="" />
-          </Grid>
-
         </Grid>
-
       </div>
     );
   }

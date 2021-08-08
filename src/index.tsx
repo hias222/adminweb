@@ -6,12 +6,14 @@ import * as serviceWorker from './serviceWorker';
 import { Route, BrowserRouter } from 'react-router-dom';
 import Settings from './settings/Settings';
 import State from './state/State';
+import Message from './message/Message';
 
 const routing = (
     <BrowserRouter basename="/admin">
         <Route path="/" exact component={App} testvalue={process.env.API_URL} />
         <Route path="/Settings" component={Settings} />
         <Route path="/State" component={State} />
+        <Route path="/Message" component={Message} />
     </BrowserRouter>
 )
 

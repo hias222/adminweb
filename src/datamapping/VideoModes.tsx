@@ -23,32 +23,41 @@ export default class VideoModes extends React.Component {
 
   render() {
     return (
-      <Grid item xs={12}>
+      <Grid container spacing={2}>
         <Grid item xs={12}>
           <p>Video</p>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={2}>
           <Button variant="contained" color="default" onClick={this.sendAction('1')}>
             1
-              <VideoIcon />
-          </Button>
-          <Button variant="contained" color="default" onClick={this.sendAction('2')}>
-            2
-              <VideoIcon />
-          </Button>
-          <Button variant="contained" color="default" onClick={this.sendAction('3')}>
-            3
-              <VideoIcon />
-          </Button>
-          <Button variant="contained" color="default" onClick={this.sendAction('4')}>
-            4
-              <VideoIcon />
-          </Button>
-          <Button variant="contained" color="default" onClick={this.sendAction('5')}>
-            5
-              <VideoIcon />
+            <VideoIcon />
           </Button>
         </Grid>
+        <Grid item xs={2}>
+          <Button variant="contained" color="default" onClick={this.sendAction('2')}>
+            2
+            <VideoIcon />
+          </Button>
+        </Grid>
+        <Grid item xs={2}>
+          <Button variant="contained" color="default" onClick={this.sendAction('3')}>
+            3
+            <VideoIcon />
+          </Button>
+        </Grid>
+        <Grid item xs={2}>
+          <Button variant="contained" color="default" onClick={this.sendAction('4')}>
+            4
+            <VideoIcon />
+          </Button>
+        </Grid>
+        <Grid item xs={2}>
+          <Button variant="contained" color="default" onClick={this.sendAction('5')}>
+            5
+            <VideoIcon />
+          </Button>
+        </Grid>
+        <Grid item xs={2}></Grid>
       </Grid>
     )
   };

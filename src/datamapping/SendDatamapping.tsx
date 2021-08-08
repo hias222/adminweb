@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
+import { Grid } from '@material-ui/core';
 
 interface Props {
     event_type: string;
@@ -23,7 +24,7 @@ export default class SendDatamapping extends React.Component<Props, State> {
         //this.getStateDatamapping = this.getStateDatamapping.bind(this);
     }
 
-    private backendConnect = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/datamapping/send-mqtt"  : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/send-mqtt"
+    private backendConnect = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/datamapping/send-mqtt" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/send-mqtt"
 
     sendFinal = (message: string) => (event: any) => {
         console.log(this.backendConnect + " " + message)
@@ -59,17 +60,27 @@ export default class SendDatamapping extends React.Component<Props, State> {
 
     render() {
         return (
-            <div> 
-                <Button variant="contained" color="default" onClick={this.sendFinal("ALL")}>ALL
-            </Button>
-                <Button variant="contained" color="default" onClick={this.sendFinal("FIN")}>Finale
-            </Button>
-                <Button variant="contained" color="default" onClick={this.sendFinal("PRE")}>Vorläufe
-            </Button>
-                <Button variant="contained" color="default" onClick={this.sendFinal("TIM")}>Normal
-            </Button>
-            <p>Type on backend: {this.state.event_type}</p>
-            </div>
+            <Grid container>
+                <Grid item xs={3}>
+                    <Button variant="contained" color="default" onClick={this.sendFinal("ALL")}>ALL
+                    </Button>
+                </Grid>
+                <Grid item xs={3}>
+                    <Button variant="contained" color="default" onClick={this.sendFinal("FIN")}>Finale
+                    </Button>
+                </Grid>
+                <Grid item xs={3}>
+                    <Button variant="contained" color="default" onClick={this.sendFinal("PRE")}>Vorläufe
+                    </Button>
+                </Grid>
+                <Grid item xs={3}>
+                    <Button variant="contained" color="default" onClick={this.sendFinal("TIM")}>Normal
+                    </Button>
+                </Grid>
+                <Grid item xs={12}>
+                    <p>Type on backend: {this.state.event_type}</p>
+                </Grid>
+            </Grid>
         )
     };
 
