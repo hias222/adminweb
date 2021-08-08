@@ -9,6 +9,7 @@ import VideoModes from '../datamapping/VideoModes';
 
 import SendMessages from '../datamapping/SendMessages';
 import RaceModes from '../datamapping/RaceModes';
+import { Card, CardContent, Typography } from '@material-ui/core';
 
 interface Props {
   message: string;
@@ -23,7 +24,7 @@ interface State {
   rank: string,
 };
 
-export default class message extends React.Component<Props, State> {
+class message extends React.Component<Props, State> {
   state: State = {
     message: "start",
     backend: [],
@@ -93,48 +94,74 @@ export default class message extends React.Component<Props, State> {
 
 
   render() {
-
     return (
-      <div>
+      <div >
         <Navigation
           numberPage={1}
         />
         <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <RaceModes />
-          </Grid>
-          <Grid item xs={12}>
-            <VideoModes />
-          </Grid>
-          <Grid item xs={12}>
-            <SendMessages
-              type="standard" />
-          </Grid>
+          <Card >
+            <CardContent>
+              <Typography color="textSecondary" gutterBottom>
+                Show Section
+              </Typography>
+              <Grid item xs={12}>
+                <RaceModes />
+              </Grid>
+            </CardContent>
+          </Card>
 
-          <Grid item xs={4}>
-            <TextField
-              id="wk-nr"
-              label="Wettkampf"
-              margin="normal"
-              variant="outlined"
-              onChange={this.handleChange('event')}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <TextField
-              id="wk-heat"
-              label="Lauf"
-              margin="normal"
-              variant="outlined"
-              onChange={this.handleChange('heat')}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <Button variant="contained" color="default" onClick={this.sendHeader()}>Send
-              <StartIcon /></Button>
-          </Grid>
+          <Card>
+            <CardContent>
+              <Typography color="textSecondary" gutterBottom>
+                Video
+              </Typography>
+              <Grid item xs={12}>
+                <VideoModes />
+              </Grid>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent>
+              <Grid item xs={12}>
+                <SendMessages
+                  type="standard" />
+              </Grid>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+              <Grid item xs={4}>
+                <TextField
+                  id="wk-nr"
+                  label="Wettkampf"
+                  margin="normal"
+                  variant="outlined"
+                  onChange={this.handleChange('event')}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <TextField
+                  id="wk-heat"
+                  label="Lauf"
+                  margin="normal"
+                  variant="outlined"
+                  onChange={this.handleChange('heat')}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <Button variant="contained" color="default" onClick={this.sendHeader()}>Send
+                  <StartIcon /></Button>
+              </Grid>
+            </CardContent>
+          </Card>
         </Grid>
+
       </div>
     );
   }
 }
+
+
+export default message

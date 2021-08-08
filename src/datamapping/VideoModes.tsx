@@ -24,9 +24,6 @@ export default class VideoModes extends React.Component {
   render() {
     return (
       <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <p>Video</p>
-        </Grid>
         <Grid item xs={2}>
           <Button variant="contained" color="default" onClick={this.sendAction('1')}>
             1

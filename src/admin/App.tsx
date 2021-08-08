@@ -9,6 +9,7 @@ import SendDatamapping from '../datamapping/SendDatamapping';
 import RaceModes from '../datamapping/RaceModes';
 import VideoModes from '../datamapping/VideoModes';
 import ChangeRaceStatus from '../datamapping/ChangeRaceStatus';
+import { Card, CardContent, Typography } from '@material-ui/core';
 
 interface Props {
   message: string;
@@ -96,74 +97,104 @@ export default class admin extends React.Component<Props, State> {
 
     return (
       <div>
-        <Navigation numberPage={0} 
+        <Navigation numberPage={0}
         />
+
         <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <RaceModes />
-          </Grid>
+          <Card><CardContent>
+            <Typography color="textSecondary" gutterBottom>
+              Show Section
+            </Typography>
+            <Grid item xs={12}>
+              <RaceModes />
+            </Grid>
+          </CardContent></Card>
+          <Card><CardContent>
+          <Typography color="textSecondary" gutterBottom>
+                Event/Heat
+              </Typography>
+            <Grid item xs={4}>
+              <TextField
+                id="wk-nr-app"
+                label="Wettkampf"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange('event')}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                id="wk-heat-app"
+                label="Lauf"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange('heat')}
+              />
+            </Grid>
 
-          <Grid item xs={4}>
-            <TextField
-              id="wk-nr-app"
-              label="Wettkampf"
-              margin="normal"
-              variant="outlined"
-              onChange={this.handleChange('event')}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <TextField
-              id="wk-heat-app"
-              label="Lauf"
-              margin="normal"
-              variant="outlined"
-              onChange={this.handleChange('heat')}
-            />
-          </Grid>
+            <Grid item xs={4}>
+              <Button variant="contained" color="default" onClick={this.sendHeader()}>Send
+                <StartIcon /></Button>
+            </Grid>
+          </CardContent></Card>
 
-          <Grid item xs={4}>
-            <Button variant="contained" color="default" onClick={this.sendHeader()}>Send
-              <StartIcon /></Button>
-          </Grid>
+          <Card><CardContent>
+          <Typography color="textSecondary" gutterBottom>
+                Heat/Lane
+              </Typography>
+            <Grid item xs={4}>
+              <TextField
+                id="wk-lane-app"
+                label="Lane"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange('lane')}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                id="wk-rank-app"
+                label="rank"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange('rank')}
+              />
+            </Grid>
 
-          <Grid item xs={4}>
-            <TextField
-              id="wk-lane-app"
-              label="Lane"
-              margin="normal"
-              variant="outlined"
-              onChange={this.handleChange('lane')}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <TextField
-              id="wk-rank-app"
-              label="rank"
-              margin="normal"
-              variant="outlined"
-              onChange={this.handleChange('rank')}
-            />
-          </Grid>
-        
-          <Grid item xs={4}>
-            <Button variant="contained" color="default" onClick={this.sendLane()}>Send
-              <StartIcon /></Button>
-          </Grid>
+            <Grid item xs={4}>
+              <Button variant="contained" color="default" onClick={this.sendLane()}>Send
+                <StartIcon /></Button>
+            </Grid>
 
-          <Grid item xs={12}>
-            <ChangeRaceStatus />
-          </Grid>
+          </CardContent></Card>
 
-          <Grid item xs={12}>
-            <VideoModes />
-          </Grid>
+          <Card><CardContent>
+          <Typography color="textSecondary" gutterBottom>
+                State
+              </Typography>
+            <Grid item xs={12}>
+              <ChangeRaceStatus />
+            </Grid>
+          </CardContent></Card>
 
+          <Card><CardContent>
+          <Typography color="textSecondary" gutterBottom>
+                Video
+              </Typography>
+            <Grid item xs={12}>
+              <VideoModes />
+            </Grid>
+          </CardContent></Card>
 
-          <Grid item xs={12}>
-            <SendDatamapping
-              event_type="" />
-          </Grid>
+          <Card><CardContent>
+          <Typography color="textSecondary" gutterBottom>
+                Data
+              </Typography>
+            <Grid item xs={12}>
+              <SendDatamapping
+                event_type="" />
+            </Grid>
+          </CardContent></Card>
 
         </Grid>
 
