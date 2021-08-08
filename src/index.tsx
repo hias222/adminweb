@@ -10,10 +10,11 @@ import Message from './message/Message';
 
 const routing = (
     <BrowserRouter basename="/admin">
-        <Route path="/" exact component={App} testvalue={process.env.API_URL} />
+        <Route path="/" exact component={App} />
         <Route path="/Settings" component={Settings} />
         <Route path="/State" component={State} />
         <Route path="/Message" component={Message} />
+        <Route path="/Admin" component={App} />
     </BrowserRouter>
 )
 

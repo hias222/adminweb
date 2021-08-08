@@ -96,7 +96,8 @@ export default class admin extends React.Component<Props, State> {
 
     return (
       <div>
-        <Navigation />
+        <Navigation numberPage={0} 
+        />
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <RaceModes />

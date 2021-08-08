@@ -14,17 +14,24 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Navigation() {
+
+// const DatamappingInfo: React.FunctionComponent<Props> = (props) => {
+export default function Navigation (props: {
+  numberPage: number, 
+}) {
+//export default function Navigation() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(props.numberPage);
 
   return (
     <BottomNavigation
-      value={value}
+      
       onChange={(event, newValue) => {
         setValue(newValue);
+        console.log("button " + newValue)
       }}
       showLabels
+      value={value}
       className={classes.root}
     >
       <BottomNavigationAction component={Link} to="/" label="Admin" icon={<AdminIcon />} />

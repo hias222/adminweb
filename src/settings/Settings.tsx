@@ -6,7 +6,8 @@ import Upload from './upload/Upload';
 const Settings: React.FC = () => {
   return (
     <div className="App">
-      <Navigation/>
+      <Navigation
+      numberPage={2}/>
       <Upload 
       message='Hello'
       />
