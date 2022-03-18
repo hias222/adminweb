@@ -7,6 +7,7 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import Settings from './settings/Settings';
 import State from './state/State';
 import Message from './message/Message';
+import Result from './result/Result';
 
 const routing = (
     <BrowserRouter basename="/admin">
@@ -15,6 +16,7 @@ const routing = (
         <Route path="/State" component={State} />
         <Route path="/Message" component={Message} />
         <Route path="/Admin" component={App} />
+        <Route path="/Resultdata" component={Result} />
     </BrowserRouter>
 )
 

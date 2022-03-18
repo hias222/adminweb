@@ -49,7 +49,7 @@ export default class Counter extends React.Component<Props, State> {
     return (
       <div>
         <Navigation
-        numberPage={3} />
+        numberPage={4} />
         <button onClick={this.getStateDatamapping}>Update</button>
         <DatamappingInfo 
         event_type={this.state.event_type} 
