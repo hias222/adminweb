@@ -23,19 +23,43 @@ export default function GetResultData() {
     }
 
     const [results, setList] = useState(noResults);
+    const [eventNumber, setEventnumber] = useState('0');
+    const [ageGroup, setAgegroup] = useState('0');
 
     useEffect(() => {
-        getResultList()
+        
+        getResultList(eventNumber, ageGroup)
             .then(item => {
                 setList(item)
-            })
-    }, [])
+            });
+
+    }, [eventNumber,ageGroup ])
+
+    function handleEventChange(event: any) {
+        setEventnumber(event.target.value)
+    }
+
+    function handleAgeChange(event: any) {
+        setAgegroup(event.target.value)
+    }
 
     return (
         <Grid>
+            <input
+                name="fname"
+                type="text"
+                value={eventNumber}
+                onChange={handleEventChange}
+            />
+            <input
+                name="fname"
+                type="text"
+                value={ageGroup}
+                onChange={handleAgeChange}
+            />
             <Grid>{results.eventDefinition.name}</Grid>
             <Grid>{results.eventDefinition.eventNumber}</Grid>
-            {results.swimmerResults.map((swimmer,index) => (
+            {results.swimmerResults.map((swimmer, index) => (
                 <Grid key={index}>{swimmer.place + ' ' + swimmer.swimmerName}</Grid>
             ))}
         </Grid>

@@ -9,16 +9,15 @@ function getDataFromCall(restData: any) {
     } else {
       reject('error getDataFromCall');
     }
-    
+
   });
 }
 
 
-export function getResultList() {
+export function getResultList(eventNumber: string, ageGroup: string) {
 
   let getdataurl = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/resultdata/upload" : process.env.REACT_APP_RESULTDATA_INTERNAL_URL + "/resultdata/getevent/"
-  console.log(getdataurl)
-
+ 
   let noresults: ResultDataInterface = {
     eventDefinition:
       { eventNumber: '0', name: 'Empty' },
@@ -33,7 +32,9 @@ export function getResultList() {
     ]
   }
 
-  return fetch(getdataurl)
+  let paramurl = getdataurl + '?' + new URLSearchParams({ 'event': eventNumber, 'agegroup': ageGroup })
+
+  return fetch(paramurl)
     .then(response => response.json())
     .then(data => getDataFromCall(data))
     .catch((error) => {
