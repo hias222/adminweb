@@ -9,7 +9,9 @@ import SendDatamapping from '../datamapping/SendDatamapping';
 import RaceModes from '../datamapping/RaceModes';
 import VideoModes from '../datamapping/VideoModes';
 import ChangeRaceStatus from '../datamapping/ChangeRaceStatus';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Card, CardContent, Container, Typography } from '@material-ui/core';
+
+import './App.css';
 
 interface Props {
   message: string;
@@ -96,10 +98,9 @@ export default class admin extends React.Component<Props, State> {
   render() {
 
     return (
-      <div>
+      <Container maxWidth='md'>
         <Navigation numberPage={0}
         />
-
         <Grid container spacing={2}>
           <Card><CardContent>
             <Typography color="textSecondary" gutterBottom>
@@ -110,9 +111,9 @@ export default class admin extends React.Component<Props, State> {
             </Grid>
           </CardContent></Card>
           <Card><CardContent>
-          <Typography color="textSecondary" gutterBottom>
-                Event/Heat
-              </Typography>
+            <Typography color="textSecondary" gutterBottom>
+              Event/Heat
+            </Typography>
             <Grid item xs={4}>
               <TextField
                 id="wk-nr-app"
@@ -139,9 +140,9 @@ export default class admin extends React.Component<Props, State> {
           </CardContent></Card>
 
           <Card><CardContent>
-          <Typography color="textSecondary" gutterBottom>
-                Heat/Lane
-              </Typography>
+            <Typography color="textSecondary" gutterBottom>
+              Heat/Lane
+            </Typography>
             <Grid item xs={4}>
               <TextField
                 id="wk-lane-app"
@@ -169,27 +170,27 @@ export default class admin extends React.Component<Props, State> {
           </CardContent></Card>
 
           <Card><CardContent>
-          <Typography color="textSecondary" gutterBottom>
-                State
-              </Typography>
+            <Typography color="textSecondary" gutterBottom>
+              State
+            </Typography>
             <Grid item xs={12}>
               <ChangeRaceStatus />
             </Grid>
           </CardContent></Card>
 
           <Card><CardContent>
-          <Typography color="textSecondary" gutterBottom>
-                Video
-              </Typography>
+            <Typography color="textSecondary" gutterBottom>
+              Video
+            </Typography>
             <Grid item xs={12}>
               <VideoModes />
             </Grid>
           </CardContent></Card>
 
           <Card><CardContent>
-          <Typography color="textSecondary" gutterBottom>
-                Data
-              </Typography>
+            <Typography color="textSecondary" gutterBottom>
+              Data
+            </Typography>
             <Grid item xs={12}>
               <SendDatamapping
                 event_type="" />
@@ -197,8 +198,7 @@ export default class admin extends React.Component<Props, State> {
           </CardContent></Card>
 
         </Grid>
-
-      </div>
+      </Container>
     );
   }
 }

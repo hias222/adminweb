@@ -1,3 +1,4 @@
+import { Box, TextField } from '@material-ui/core';
 import React from 'react';
 
 type PresentationalProps = {
@@ -19,7 +20,6 @@ const FileUploaderPresentationalComponent: React.SFC<
   const {
     dragging,
     file,
-    onSelectFileClick,
     onDrag,
     onDragStart,
     onDragEnd,
@@ -47,13 +47,22 @@ const FileUploaderPresentationalComponent: React.SFC<
       onDragLeave={onDragLeave}
       onDrop={onDrop}
     >
+
       <div className="file-uploader__contents">
-        <span className="file-uploader__file-name">{fileName}</span>
-        <span>Drag & Drop File</span>
-        <span>or</span>
-        <span onClick={onSelectFileClick}>
-          Select File
-        </span>
+        <Box height={100} sx={{ border: '1px dashed grey' }}>
+          <TextField id="outlined-basic" 
+            label={fileName}
+            helperText="Drag & Drop"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            InputProps={{
+              readOnly: true,
+            }} />
+
+        </Box>
       </div>
       {props.children}
     </div>

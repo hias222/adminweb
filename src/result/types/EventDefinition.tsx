@@ -1,7 +1,7 @@
 export type eventDefinition = {
     name: string;
     eventNumber: string;
-    relayCount?: string;
+    relaycount?: string;
     gender?: string;
     round?: string;
     swimStyle?: string;

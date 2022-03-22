@@ -9,7 +9,7 @@ import VideoModes from '../datamapping/VideoModes';
 
 import SendMessages from '../datamapping/SendMessages';
 import RaceModes from '../datamapping/RaceModes';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Card, CardContent, Container, Typography } from '@material-ui/core';
 
 interface Props {
   message: string;
@@ -95,7 +95,7 @@ class message extends React.Component<Props, State> {
 
   render() {
     return (
-      <div >
+      <Container maxWidth='md'>
         <Navigation
           numberPage={1}
         />
@@ -158,7 +158,7 @@ class message extends React.Component<Props, State> {
           </Card>
         </Grid>
 
-      </div>
+      </Container>
     );
   }
 }

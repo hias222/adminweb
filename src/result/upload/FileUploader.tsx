@@ -1,9 +1,7 @@
 import React from 'react';
 import FileUploaderPresentationalComponent from './FileUploaderPresentationalComponent'
-
-import NewRelease from '@material-ui/icons/NewReleases';
-import ReplayIcon from '@material-ui/icons/Replay';
-import UploadIcon from '@material-ui/icons/CloudUpload';
+import SelectIcon from '@material-ui/icons/InsertDriveFile';
+import UploadIcon from '@material-ui/icons/Publish';
 import Button from '@material-ui/core/Button';
 import { Grid } from '@material-ui/core';
 
@@ -182,8 +180,8 @@ class FileUploader extends React.Component<Props, State> {
 
   render() {
     return (
-      <Grid container spacing={3}>
-        <Grid item xs={3} >
+      <Grid container spacing={2}>
+        <Grid item xs={12} >
           <FileUploaderPresentationalComponent
             dragging={this.state.dragging}
             file={this.state.file}
@@ -196,32 +194,29 @@ class FileUploader extends React.Component<Props, State> {
             onDragLeave={this.dragleaveListener}
             onDrop={this.dropListener}
           />
-
-          <input
-            ref={el => (this.fileUploaderInput = el)}
-            type="file"
-            className="file-uploader__input"
-            onChange={this.onFileChanged}
-          />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={6}>
+          <Button
+            variant="contained"
+            component="label"
+          >
+            Select
+            <SelectIcon />
+            <input
+              ref={el => (this.fileUploaderInput = el)}
+              type="file"
+              className="file-uploader__input"
+              onChange={this.onFileChanged}
+              hidden
+            />
+          </Button>
+        </Grid>
+        <Grid item xs={6}>
           <Button variant="contained" color="default" onClick={(event: any) => {
             this.uploadFiles()
           }}>
             Upload it
-              <UploadIcon />
-          </Button>
-        </Grid>
-        <Grid item xs={3}>
-          <Button variant="contained" color="default" onClick={this.sendAction('lenex')}>
-            Renew Lenex
-              <NewRelease />
-          </Button>
-        </Grid>
-        <Grid item xs={3}>
-          <Button variant="contained" color="default" onClick={this.sendAction('restart')}>
-            Restart
-              <ReplayIcon />
+            <UploadIcon />
           </Button>
         </Grid>
       </Grid>
