@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../Result.css';
 import Grid from '@material-ui/core/Grid';
-import { getResultList } from '../services/getResultList';
+import { getResultList, getAgeList } from '../services/getResultList';
 import { ResultDataInterface } from '../types/ResultDataInterface';
 import { TextField } from '@material-ui/core';
 
@@ -23,7 +23,16 @@ export default function GetResultData() {
         ]
     }
 
+    const ageGroupsValues = [
+        {
+            value: '0',
+            label: '0-0',
+        }
+    ];
+
+
     const [results, setList] = useState(noResults);
+    const [ageGroups, setAgegroups] = useState(ageGroupsValues);
     const [eventNumber, setEventnumber] = useState('0');
     const [ageGroup, setAgegroup] = useState('0');
 
@@ -32,6 +41,11 @@ export default function GetResultData() {
         getResultList(eventNumber, ageGroup)
             .then(item => {
                 setList(item)
+            });
+
+        getAgeList(eventNumber)
+            .then(item => {
+                setAgegroups(item)
             });
 
     }, [eventNumber, ageGroup])
@@ -60,6 +74,7 @@ export default function GetResultData() {
             <Grid item xs={6}>
                 <TextField
                     id="standard-age-id"
+                    select
                     label="Age"
                     helperText="Age Class"
                     name="Age"
@@ -67,7 +82,16 @@ export default function GetResultData() {
                     value={ageGroup}
                     variant="outlined"
                     onChange={handleAgeChange}
-                />
+                    SelectProps={{
+                        native: true,
+                    }}
+                >
+                    {ageGroups.map((ageValues) => (
+                        <option key={ageValues.value} value={ageValues.value}>
+                            {ageValues.label}
+                        </option>
+                    ))}
+                </TextField>
             </Grid>
             <Grid>{results.eventDefinition.name}</Grid>
             <Grid>{results.eventDefinition.eventNumber}</Grid>
