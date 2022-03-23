@@ -1,9 +1,11 @@
 export type resultSwimmerData ={
-    swimmerName: string;
-    firstName?: string;
-    birthYear?: string;
-    clubId: string;
-    clubName: string;
+    firstname: string;
+    lastname: string;
+    name: string;
+    birthdate?: string;
+    nation?: string;
     place: string;
-    endTime: string;
+    order?: string;
+    swimtime?: string;
+    code?: string;
 }

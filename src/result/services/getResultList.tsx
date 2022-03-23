@@ -23,10 +23,9 @@ export function getResultList(eventNumber: string, ageGroup: string) {
       { eventNumber: '0', name: 'Empty' },
     swimmerResults: [
       {
-        clubId: '',
-        clubName: '',
-        swimmerName: '',
-        endTime: '',
+        firstname: '',
+        lastname: '',
+        name: '',
         place: ''
       }
     ]

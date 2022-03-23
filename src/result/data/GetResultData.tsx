@@ -14,10 +14,9 @@ export default function GetResultData() {
             { eventNumber: '1', name: 'Name' },
         swimmerResults: [
             {
-                clubId: '',
-                clubName: '',
-                swimmerName: '',
-                endTime: '',
+                name: '',
+                lastname: '', 
+                firstname: '',
                 place: ''
             }
         ]
@@ -93,10 +92,15 @@ export default function GetResultData() {
                     ))}
                 </TextField>
             </Grid>
-            <Grid>{results.eventDefinition.name}</Grid>
-            <Grid>{results.eventDefinition.eventNumber}</Grid>
+            <Grid item xs={12}>{results.eventDefinition.competition}</Grid>
+            <Grid item xs={6}>{results.eventDefinition.name}</Grid>
+            <Grid item xs={6}>{'WK: ' + results.eventDefinition.eventNumber}</Grid>
             {results.swimmerResults.map((swimmer, index) => (
-                <Grid key={index}>{swimmer.place + ' ' + swimmer.swimmerName}</Grid>
+                <Grid container spacing={0}>
+                    <Grid item xs={1} key={index}>{swimmer.place}</Grid>
+                    <Grid item xs={7} key={index}>{swimmer.firstname + ' ' + swimmer.lastname + ' ' + swimmer.birthdate}</Grid>
+                    <Grid item xs={4} key={index}>{swimmer.name}</Grid>
+                </Grid>
             ))}
         </Grid>
     );
