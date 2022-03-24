@@ -62,3 +62,17 @@ export function getAgeList(eventNumber: string) {
       return noresults
     })
 }
+
+
+export function sendResultList(eventNumber: string, ageGroup: string) {
+
+  let getdataurl = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/resultdata/getevent/" : process.env.REACT_APP_RESULTDATA_INTERNAL_URL + "/resultdata/getevent/"
+  let paramurl = getdataurl + '?' + new URLSearchParams({ 'event': eventNumber, 'agegroup': ageGroup, 'mode': 'show' })
+
+  return fetch(paramurl)
+    .then(response => response.json())
+    .catch((error) => {
+      console.log(error)
+      return null
+    })
+}

@@ -16,7 +16,7 @@ const Result: React.FC = () => {
         </Grid>
         <Grid item xs={4} >
           <Upload
-            message='Hello'
+            message='Lenex Upload'
           />
         </Grid>
       </Grid>

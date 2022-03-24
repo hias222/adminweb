@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../Result.css';
 import Grid from '@material-ui/core/Grid';
-import { getResultList, getAgeList } from '../services/getResultList';
+import { getResultList, getAgeList, sendResultList } from '../services/getResultList';
 import { ResultDataInterface } from '../types/ResultDataInterface';
-import { TextField } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 
 export default function GetResultData() {
 
@@ -15,7 +15,7 @@ export default function GetResultData() {
         swimmerResults: [
             {
                 name: '',
-                lastname: '', 
+                lastname: '',
                 firstname: '',
                 place: ''
             }
@@ -57,6 +57,12 @@ export default function GetResultData() {
         setAgegroup(event.target.value)
     }
 
+    function handleSendClick(event: any) {
+        sendResultList(eventNumber, ageGroup)
+        .then(() => console.log('send success'))
+        .catch(() => console.log('Failure send'))
+    }
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={6}>
@@ -92,14 +98,20 @@ export default function GetResultData() {
                     ))}
                 </TextField>
             </Grid>
+            <Grid item xs={12}>
+                <Button variant="contained" color="default" onClick={handleSendClick}>
+                    Send
+                </Button>
+            </Grid>
             <Grid item xs={12}>{results.eventDefinition.competition}</Grid>
             <Grid item xs={6}>{results.eventDefinition.name}</Grid>
             <Grid item xs={6}>{'WK: ' + results.eventDefinition.eventNumber}</Grid>
             {results.swimmerResults.map((swimmer, index) => (
                 <Grid container spacing={0}>
                     <Grid item xs={1} key={index}>{swimmer.place}</Grid>
-                    <Grid item xs={7} key={index}>{swimmer.firstname + ' ' + swimmer.lastname + ' ' + swimmer.birthdate}</Grid>
-                    <Grid item xs={4} key={index}>{swimmer.name}</Grid>
+                    <Grid item xs={5} key={index}>{swimmer.firstname + ' ' + swimmer.lastname + ' ' + swimmer.birthdate}</Grid>
+                    <Grid item xs={3} key={index}>{swimmer.name}</Grid>
+                    <Grid item xs={3} key={index}>{swimmer.swimtime}</Grid>
                 </Grid>
             ))}
         </Grid>
