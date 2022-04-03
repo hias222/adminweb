@@ -4,6 +4,7 @@ import Navigation from '../common/Navigation';
 import Upload from './upload/Upload';
 import GetResultData from './data/GetResultData';
 import { Container, Grid } from '@material-ui/core';
+import GetClubList from './data/GetClubList';
 
 const Result: React.FC = () => {
   return (
@@ -18,6 +19,9 @@ const Result: React.FC = () => {
           <Upload
             message='Lenex Upload'
           />
+        </Grid>
+        <Grid item xs={12} >
+          <GetClubList />
         </Grid>
       </Grid>
     </Container>
