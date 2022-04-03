@@ -23,9 +23,14 @@ export default function GetClubList() {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
+                <Button variant="contained" color="default" onClick={handleListChange}>
+                    Clubs
+                </Button>
+            </Grid>
+            <Grid item xs={12}>
                 <TextField
                     id="standard-event-id"
-                    label="List"
+                    label="Clubs"
                     helperText="List"
                     name="Event"
                     fullWidth
@@ -33,11 +38,6 @@ export default function GetClubList() {
                     variant="outlined"
                     onChange={handleListChange}
                 />
-            </Grid>
-            <Grid item xs={12}>
-                <Button variant="contained" color="default" onClick={handleListChange}>
-                    Clubs
-                </Button>
             </Grid>
         </Grid>
     );
