@@ -8,6 +8,7 @@ import Settings from './settings/Settings';
 import State from './state/State';
 import Message from './message/Message';
 import Result from './result/Result';
+import Combined from './combined/Combined';
 
 const routing = (
     <BrowserRouter basename="/admin">
@@ -17,6 +18,7 @@ const routing = (
         <Route path="/Message" component={Message} />
         <Route path="/Admin" component={App} />
         <Route path="/Resultdata" component={Result} />
+        <Route path="/Combined" component={Combined} />
     </BrowserRouter>
 )
 

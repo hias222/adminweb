@@ -51,7 +51,7 @@ export default class Counter extends React.Component<Props, State> {
     return (
       <Container maxWidth='md'>
         <Navigation
-          numberPage={4} />
+          numberPage={5} />
         <button onClick={this.getStateDatamapping}>Update</button>
         <DatamappingInfo
           event_type={this.state.event_type}
