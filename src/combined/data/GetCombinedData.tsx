@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../Combined.css';
 import Grid from '@material-ui/core/Grid';
 import { Button, TextField } from '@material-ui/core';
-import { getCombinedList } from '../service/getCombinedList';
+import { getCombinedList, getDefinitionList } from '../service/getCombinedList';
 import CertsDocument from '../pdf/PDFCerts';
 import { CombinedInterface } from '../types/CombinedDataInterface';
 
@@ -20,22 +20,29 @@ export default function GetCombinedData() {
     }]
 
     const [results, setList] = useState(noResults);
-    const [combinedNumber, setCombinednumber] = useState('0');
     const [showpdf, setShowpdf] = useState(true);
     const [buttonPDF, setButtonpdf] = useState('PDF');
+    const [combinedID, setCombinedid] = useState(1);
+
+    const [combinedDefinition, setCombinedDefinition] = useState([{value: '1', label: 'undefined'}]);
 
     useEffect(() => {
 
-        getCombinedList('1')
+        getCombinedList(combinedID.toString())
             .then(item => {
                 setList(item)
-                console.log(item)
+                //console.log(item)
             });
 
-    }, [combinedNumber])
+        getDefinitionList()
+            .then(item => {
+                setCombinedDefinition(item)
+            });
 
-    function handleEventChange(event: any) {
-        setCombinednumber(event.target.value)
+    }, [combinedID])
+
+    function handleDefChange(event: any) {
+        setCombinedid(event.target.value)
     }
 
     function handlePDFClick(event: any) {
@@ -62,25 +69,36 @@ export default function GetCombinedData() {
             </Grid>
         } else {
             return <Grid>
-                <CertsDocument certData={results}/>
+                <CertsDocument certData={results} />
             </Grid>
         }
     }
 
     return (
         <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
                 <TextField
-                    id="standard-event-id"
+                    id="standard-def-id"
+                    select
                     label="Combined"
-                    helperText="Combined Number"
-                    name="Event"
-                    value={combinedNumber}
+                    helperText="Definitions"
+                    name="Def"
+                    type="text"
+                    value={combinedID}
                     variant="outlined"
-                    onChange={handleEventChange}
-                />
+                    onChange={handleDefChange}
+                    SelectProps={{
+                        native: true,
+                    }}
+                >
+                    {combinedDefinition.map((defs) => (
+                        <option key={defs.value} value={defs.value}>
+                            {defs.label}
+                        </option>
+                    ))}
+                </TextField>
             </Grid>
-            <Grid>
+            <Grid item xs={6}>
                 <Button variant="contained" color="default" onClick={handlePDFClick}>
                     {buttonPDF}
                 </Button>
