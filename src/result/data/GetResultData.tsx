@@ -107,11 +107,11 @@ export default function GetResultData() {
             <Grid item xs={6}>{results.eventDefinition.name}</Grid>
             <Grid item xs={6}>{'WK: ' + results.eventDefinition.eventNumber}</Grid>
             {results.swimmerResults.map((swimmer, index) => (
-                <Grid container spacing={0}>
-                    <Grid item xs={1} key={index}>{swimmer.place}</Grid>
-                    <Grid item xs={5} key={index}>{swimmer.firstname + ' ' + swimmer.lastname + ' ' + swimmer.birthdate}</Grid>
-                    <Grid item xs={3} key={index}>{swimmer.name}</Grid>
-                    <Grid item xs={3} key={index}>{swimmer.swimtime}</Grid>
+                <Grid key={6200 + index} container spacing={0}>
+                    <Grid item xs={1} key={1200 + index}>{swimmer.place}</Grid>
+                    <Grid item xs={5} key={2200 + index}>{swimmer.firstname + ' ' + swimmer.lastname + ' ' + swimmer.birthdate}</Grid>
+                    <Grid item xs={3} key={3200 + index}>{swimmer.name}</Grid>
+                    <Grid item xs={3} key={4200 + index}>{swimmer.swimtime}</Grid>
                 </Grid>
             ))}
         </Grid>
