@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../Combined.css';
 import Grid from '@material-ui/core/Grid';
-import { TextField } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 import { getCombinedList } from '../service/getCombinedList';
-import BasicDocument from '../pdf/Sample';
-
-export interface CombinedInterface {
-    firstname: string;
-    lastname: string;
-    place?: string;
-    combinedpoints: string;
-    birthdate: string;
-    clubname: string;
-    combined_name: string;
-}
-
+import CertsDocument from '../pdf/PDFCerts';
+import { CombinedInterface } from '../types/CombinedDataInterface';
 
 export default function GetCombinedData() {
 
@@ -31,6 +21,8 @@ export default function GetCombinedData() {
 
     const [results, setList] = useState(noResults);
     const [combinedNumber, setCombinednumber] = useState('0');
+    const [showpdf, setShowpdf] = useState(true);
+    const [buttonPDF, setButtonpdf] = useState('PDF');
 
     useEffect(() => {
 
@@ -46,14 +38,34 @@ export default function GetCombinedData() {
         setCombinednumber(event.target.value)
     }
 
-    /*
-
-    function handleSendClick(event: any) {
-        sendResultList(eventNumber, ageGroup)
-            .then(() => console.log('send success'))
-            .catch(() => console.log('Failure send'))
+    function handlePDFClick(event: any) {
+        if (showpdf) {
+            setShowpdf(false)
+            setButtonpdf('Details')
+        } else {
+            setShowpdf(true)
+            setButtonpdf('PDF')
+        }
     }
-    */
+
+    function getShowData() {
+        if (showpdf) {
+            return <Grid item xs={12}>
+                {results.map((swimmer, index) => (
+                    <Grid container spacing={0}>
+                        <Grid item xs={1} key={1000 + index}>{swimmer.place}</Grid>
+                        <Grid item xs={3} key={2000 + index}>{swimmer.firstname}</Grid>
+                        <Grid item xs={3} key={3000 + index}>{swimmer.lastname}</Grid>
+                        <Grid item xs={2} key={4000 + index}>{swimmer.combinedpoints}</Grid>
+                    </Grid>
+                ))}
+            </Grid>
+        } else {
+            return <Grid>
+                <CertsDocument certData={results}/>
+            </Grid>
+        }
+    }
 
     return (
         <Grid container spacing={2}>
@@ -69,16 +81,11 @@ export default function GetCombinedData() {
                 />
             </Grid>
             <Grid>
-                <BasicDocument/>
+                <Button variant="contained" color="default" onClick={handlePDFClick}>
+                    {buttonPDF}
+                </Button>
             </Grid>
-            {results.map((swimmer, index) => (
-                <Grid container spacing={0}>
-                    <Grid item xs={1} key={1000 + index}>{swimmer.place}</Grid>
-                    <Grid item xs={3} key={2000 + index}>{swimmer.firstname}</Grid>
-                    <Grid item xs={3} key={3000 + index}>{swimmer.lastname}</Grid>
-                    <Grid item xs={2} key={4000 + index}>{swimmer.combinedpoints}</Grid>
-                </Grid>
-            ))}
+            {getShowData()}
         </Grid>
     );
 }
