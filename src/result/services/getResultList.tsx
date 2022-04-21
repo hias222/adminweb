@@ -63,6 +63,26 @@ export function getAgeList(eventNumber: string) {
     })
 }
 
+export function getEventList() {
+
+  let getdataurl = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/resultdata/getevent/" : process.env.REACT_APP_RESULTDATA_INTERNAL_URL + "/resultdata/getevent/"
+
+  let noresults = [
+    {
+      value: '0',
+      label: '0-0',
+    }
+  ];
+
+  let paramurl = getdataurl + '?' + new URLSearchParams({ 'mode': 'eventdefinition' })
+
+  return fetch(paramurl)
+    .then(response => response.json())
+    .catch((error) => {
+      console.log(error)
+      return noresults
+    })
+}
 
 export function sendResultList(eventNumber: string, ageGroup: string) {
 

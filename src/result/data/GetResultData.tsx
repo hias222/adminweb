@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../Result.css';
 import Grid from '@material-ui/core/Grid';
-import { getResultList, getAgeList, sendResultList } from '../services/getResultList';
+import { getResultList, getAgeList, sendResultList, getEventList } from '../services/getResultList';
 import { ResultDataInterface } from '../types/ResultDataInterface';
 import { TextField, Button } from '@material-ui/core';
 
@@ -32,6 +32,7 @@ export default function GetResultData() {
 
     const [results, setList] = useState(noResults);
     const [ageGroups, setAgegroups] = useState(ageGroupsValues);
+    const [eventNames, setEventnames] = useState(ageGroupsValues);
     const [eventNumber, setEventnumber] = useState('0');
     const [ageGroup, setAgegroup] = useState('0');
 
@@ -47,6 +48,11 @@ export default function GetResultData() {
                 setAgegroups(item)
             });
 
+        getEventList()
+            .then(item => {
+                setEventnames(item)
+            });
+
     }, [eventNumber, ageGroup])
 
     function handleEventChange(event: any) {
@@ -59,22 +65,33 @@ export default function GetResultData() {
 
     function handleSendClick(event: any) {
         sendResultList(eventNumber, ageGroup)
-        .then(() => console.log('send success'))
-        .catch(() => console.log('Failure send'))
+            .then(() => console.log('send success'))
+            .catch(() => console.log('Failure send'))
     }
 
     return (
         <Grid container spacing={2}>
             <Grid item xs={6}>
                 <TextField
-                    id="standard-event-id"
-                    label="Event"
-                    helperText="Event Number"
-                    name="Event"
+                    id="standard-age-id"
+                    select
+                    label="Age"
+                    helperText="Age Class"
+                    name="Age"
+                    type="text"
                     value={eventNumber}
                     variant="outlined"
                     onChange={handleEventChange}
-                />
+                    SelectProps={{
+                        native: true,
+                    }}
+                >
+                    {eventNames.map((eventValues) => (
+                        <option key={eventValues.value} value={eventValues.value}>
+                            {eventValues.label}
+                        </option>
+                    ))}
+                </TextField>
             </Grid>
             <Grid item xs={6}>
                 <TextField
