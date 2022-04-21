@@ -72,7 +72,7 @@ export default function GetCombinedData() {
                             <Grid item xs={3} key={3000 + index}>{swimmer.lastname}</Grid>
                             <Grid item xs={2} key={4000 + index}>{swimmer.combinedpoints}</Grid>
                         </Grid>
-
+                        
                         {swimmer.data?.map((data, index) =>
                             <Grid key={6500 + index} container spacing={0}>
                                 <Grid item xs={1} key={7800 + index}>{data.event}</Grid>
