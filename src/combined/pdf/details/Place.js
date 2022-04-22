@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     marginBottom: 10,
+    marginTop: 10,
   },
 });
 

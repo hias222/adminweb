@@ -28,15 +28,15 @@ const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
     textAlign: 'center',
-    top: 250,
+    top: 270,
   },
   club: {
     textAlign: 'center',
-    top: 255
+    top: 270
   },
   textbeforestyle: {
     textAlign: 'center',
-    top: 260
+    top: 270
   },
   textstyle: {
     textAlign: 'center',
@@ -44,15 +44,15 @@ const styles = StyleSheet.create({
   },
   points: {
     textAlign: 'center',
-    top: 280
+    top: 270
   },
   textbeforeplace: {
     textAlign: 'center',
-    top: 285
+    top: 270
   },
   place: {
     textAlign: 'center',
-    top: 290
+    top: 270
   },
   viewer: {
     width: window.innerWidth, //the pdf viewer will take up all of the width and height
