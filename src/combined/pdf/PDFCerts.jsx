@@ -10,6 +10,13 @@ import {
 } from "@react-pdf/renderer";
 import './Sample.css';
 
+import Name from './details/Name';
+import Club from './details/Club';
+import Points from './details/Points'
+import Place from './details/Place'
+import AdditionalText from './details/AdditionalText'
+import StyleText from './details/StyleText'
+
 // Create styles
 const styles = StyleSheet.create({
   page: {
@@ -17,25 +24,34 @@ const styles = StyleSheet.create({
     color: "black",
   },
   name: {
-    fontSize: 32,
+    margin: 0,
+    padding: 0,
     textAlign: 'center',
     top: 250,
   },
   club: {
-    position: 'absolute',
-    fontSize: 24,
     textAlign: 'center',
-    top: 250
+    top: 255
+  },
+  textbeforestyle: {
+    textAlign: 'center',
+    top: 260
+  },
+  textstyle: {
+    textAlign: 'center',
+    top: 270
   },
   points: {
-    fontSize: 24,
     textAlign: 'center',
-    top: 300
+    top: 290
+  },
+  textbeforeplace: {
+    textAlign: 'center',
+    top: 295
   },
   place: {
-    fontSize: 24,
     textAlign: 'center',
-    top: 320
+    top: 300
   },
   viewer: {
     width: window.innerWidth, //the pdf viewer will take up all of the width and height
@@ -57,16 +73,25 @@ function CertsDocument(model) {
         {model.certData.map((swimmer, index) => (
           <Page size="A4" style={styles.page}>
             <View style={styles.name}>
-              <Text>{swimmer.firstname + ' ' + swimmer.lastname} </Text>
+              <Name>{swimmer.firstname + ' ' + swimmer.lastname}</Name>
             </View>
             <View style={styles.club}>
-              <Text>{swimmer.clubname} </Text>
+              <Club>{swimmer.clubname}</Club>
+            </View>
+            <View style={styles.textbeforestyle}>
+              <AdditionalText>errichte im</AdditionalText>
+            </View>
+            <View style={styles.textstyle}>
+              <StyleText>{swimmer.title}</StyleText>
             </View>
             <View style={styles.points}>
-              <Text>{'Punkte ' + swimmer.combinedpoints} </Text>
+              <Points>{swimmer.combinedpoints}</Points>
             </View>
-            <View style={styles.points}>
-              <Text>{swimmer.place + '. Platz'} </Text>
+            <View style={styles.textbeforeplace}>
+              <AdditionalText>den</AdditionalText>
+            </View>
+            <View style={styles.place}>
+              <Place>{swimmer.place}</Place>
             </View>
           </Page>
         ))}
