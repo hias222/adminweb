@@ -4,7 +4,7 @@ import { Text, StyleSheet } from '@react-pdf/renderer';
 const styles = StyleSheet.create({
   title: {
     fontSize: 32,
-    marginBottom: 10,
+    marginBottom: 5,
   },
 });
 

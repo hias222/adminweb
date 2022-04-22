@@ -8,6 +8,7 @@ import {
   StyleSheet,
   PDFViewer,
 } from "@react-pdf/renderer";
+
 import './Sample.css';
 
 import Name from './details/Name';
@@ -16,7 +17,7 @@ import Points from './details/Points'
 import Place from './details/Place'
 import AdditionalText from './details/AdditionalText'
 import StyleText from './details/StyleText'
-
+import Details from './details/Details'
 // Create styles
 const styles = StyleSheet.create({
   page: {
@@ -43,15 +44,15 @@ const styles = StyleSheet.create({
   },
   points: {
     textAlign: 'center',
-    top: 290
+    top: 280
   },
   textbeforeplace: {
     textAlign: 'center',
-    top: 295
+    top: 285
   },
   place: {
     textAlign: 'center',
-    top: 300
+    top: 290
   },
   viewer: {
     width: window.innerWidth, //the pdf viewer will take up all of the width and height
@@ -93,6 +94,8 @@ function CertsDocument(model) {
             <View style={styles.place}>
               <Place>{swimmer.place}</Place>
             </View>
+            <Details>{swimmer.data}</Details>
+            {console.log(swimmer.data)}
           </Page>
         ))}
       </Document>
