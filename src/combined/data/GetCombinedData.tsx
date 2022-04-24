@@ -31,7 +31,7 @@ export default function GetCombinedData() {
         getCombinedList(combinedID.toString())
             .then(item => {
                 setList(item)
-                //console.log(item)
+                console.log(item)
             });
 
         getDefinitionList()
@@ -70,6 +70,7 @@ export default function GetCombinedData() {
                             <Grid item xs={1} key={1000 + index}>{swimmer.place}</Grid>
                             <Grid item xs={3} key={2000 + index}>{swimmer.firstname}</Grid>
                             <Grid item xs={3} key={3000 + index}>{swimmer.lastname}</Grid>
+                            <Grid item xs={2} key={5000 + index}>{swimmer.birthdate}</Grid>
                             <Grid item xs={2} key={4000 + index}>{swimmer.combinedpoints}</Grid>
                         </Grid>
                         
