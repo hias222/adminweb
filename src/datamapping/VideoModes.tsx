@@ -44,13 +44,13 @@ export default class VideoModes extends React.Component {
         </Grid>
         <Grid item xs={2}>
           <Button variant="contained" color="default" onClick={this.sendAction('4')}>
-            4
+            RTMP-HLS
             <VideoIcon />
           </Button>
         </Grid>
         <Grid item xs={2}>
           <Button variant="contained" color="default" onClick={this.sendAction('5')}>
-            5
+            RTMP-Dash
             <VideoIcon />
           </Button>
         </Grid>
