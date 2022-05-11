@@ -20,8 +20,10 @@ export default function GetCombinedData() {
     }]
 
     const [results, setList] = useState(noResults);
-    const [showpdf, setShowpdf] = useState(true);
-    const [buttonPDF, setButtonpdf] = useState('PDF');
+    const [showDetails, setShowDetails] = useState(true);
+    const [showCerts, setShowCerts] = useState(false);
+    const [showErgebnispdf, setShowErgebnispdf] = useState(false);
+
     const [combinedID, setCombinedid] = useState(1);
 
     const [combinedDefinition, setCombinedDefinition] = useState([{ value: '1', label: 'undefined' }]);
@@ -45,14 +47,10 @@ export default function GetCombinedData() {
         setCombinedid(event.target.value)
     }
 
-    function handlePDFClick(event: any) {
-        if (showpdf) {
-            setShowpdf(false)
-            setButtonpdf('Details')
-        } else {
-            setShowpdf(true)
-            setButtonpdf('PDF')
-        }
+    function handleCertClick(event: any) {
+        setShowDetails(false)
+        setShowErgebnispdf(false)
+        setShowCerts(true)
     }
 
     function handleSendClick(event: any) {
@@ -61,8 +59,21 @@ export default function GetCombinedData() {
             .catch(() => console.log('Failure send'))
     }
 
+    function handleDetailsClick(event: any) {
+        setShowErgebnispdf(false)
+        setShowDetails(true)
+        setShowCerts(false)
+    }
+
+    function handleErgebnisClick(event: any) {
+        setShowErgebnispdf(true)
+        setShowDetails(false)
+        setShowCerts(false)
+    }
+
+
     function getShowData() {
-        if (showpdf) {
+        if (showDetails) {
             return <Grid item xs={12}>
                 {results.map((swimmer, index) => (
                     <div>
@@ -73,7 +84,7 @@ export default function GetCombinedData() {
                             <Grid item xs={2} key={5000 + index}>{swimmer.birthdate}</Grid>
                             <Grid item xs={2} key={4000 + index}>{swimmer.combinedpoints}</Grid>
                         </Grid>
-                        
+
                         {swimmer.data?.map((data, index) =>
                             <Grid key={6500 + index} container spacing={0}>
                                 <Grid item xs={1} key={7800 + index}>{data.event}</Grid>
@@ -87,7 +98,10 @@ export default function GetCombinedData() {
                     </div>
                 ))}
             </Grid>
-        } else {
+        } else if (showErgebnispdf) {
+            return
+        }
+        else if (showCerts) {
             return <Grid>
                 <CertsDocument certData={results} />
             </Grid>
@@ -96,7 +110,7 @@ export default function GetCombinedData() {
 
     return (
         <Grid container spacing={2}>
-            <Grid item xs={4}>
+            <Grid item xs={6}>
                 <TextField
                     id="standard-def-id"
                     select
@@ -118,16 +132,27 @@ export default function GetCombinedData() {
                     ))}
                 </TextField>
             </Grid>
-            <Grid item xs={4}>
-                <Button variant="contained" color="default" onClick={handlePDFClick}>
-                    {buttonPDF}
+            <Grid item xs={3}>
+                <Button variant="contained" color="default" onClick={handleDetailsClick}>
+                    List
                 </Button>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
                 <Button variant="contained" color="default" onClick={handleSendClick}>
                     Send
                 </Button>
             </Grid>
+            <Grid item xs={6}>
+                <Button variant="contained" color="default" onClick={handleCertClick}>
+                    Urkunden (PDF)
+                </Button>
+            </Grid>
+            <Grid item xs={6}>
+                <Button variant="contained" color="default" onClick={handleErgebnisClick}>
+                    Ergbebnis (PDF)
+                </Button>
+            </Grid>
+            
             {getShowData()}
         </Grid>
     );
