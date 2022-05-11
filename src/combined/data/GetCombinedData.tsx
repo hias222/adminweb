@@ -5,6 +5,7 @@ import { Button, TextField } from '@material-ui/core';
 import { getCombinedList, getDefinitionList, sendCombinedList } from '../service/getCombinedList';
 import CertsDocument from '../pdf/PDFCerts';
 import { CombinedInterface } from '../types/CombinedDataInterface';
+import ResultsDocument from '../pdf/PDFResults';
 
 export default function GetCombinedData() {
 
@@ -99,7 +100,9 @@ export default function GetCombinedData() {
                 ))}
             </Grid>
         } else if (showErgebnispdf) {
-            return
+            return <Grid>
+                <ResultsDocument certData={results} />
+            </Grid>
         }
         else if (showCerts) {
             return <Grid>
@@ -152,7 +155,7 @@ export default function GetCombinedData() {
                     Ergbebnis (PDF)
                 </Button>
             </Grid>
-            
+
             {getShowData()}
         </Grid>
     );
