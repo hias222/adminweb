@@ -35,10 +35,10 @@ const Details = ({ children }) =>
             <Text key={index} style={styles.title}>{detail.distance + 'm ' + detail.swimstyle}</Text>
           </View>
           <View style={styles.title}>
-            <Text key={index} style={styles.title}>{detail.points + ' Punkte'}</Text>
+            <Text key={index} style={styles.title}>{detail.points + ' Punkte '}</Text>
           </View>
           <View style={styles.title}>
-            <Text key={index} style={styles.title}>{ detail.swimtime}</Text>
+            <Text key={index} style={styles.title}>{detail.swimtime}</Text>
           </View>
         </View>
       )}
