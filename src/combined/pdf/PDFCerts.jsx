@@ -28,31 +28,31 @@ const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
     textAlign: 'center',
-    top: 270,
+    top: 390,
   },
   club: {
     textAlign: 'center',
-    top: 270
+    top: 390
   },
   textbeforestyle: {
     textAlign: 'center',
-    top: 270
+    top: 390
   },
   textstyle: {
     textAlign: 'center',
-    top: 270
+    top: 390
   },
   points: {
     textAlign: 'center',
-    top: 270
+    top: 390
   },
   textbeforeplace: {
     textAlign: 'center',
-    top: 270
+    top: 390
   },
   place: {
     textAlign: 'center',
-    top: 270
+    top: 390
   },
   viewer: {
     width: window.innerWidth, //the pdf viewer will take up all of the width and height
@@ -95,7 +95,6 @@ function CertsDocument(model) {
               <Place>{swimmer.place}</Place>
             </View>
             <Details>{swimmer.data}</Details>
-            {console.log(swimmer.data)}
           </Page>
         ))}
       </Document>

@@ -9,7 +9,6 @@ import {
 const styles = StyleSheet.create({
   title: {
     fontSize: 10,
-    marginBottom: 10,
   },
   detail: {
     fontSize: 10,
@@ -18,13 +17,10 @@ const styles = StyleSheet.create({
   containerinternal: {
     flex: 1,
     flexDirection: 'row',
-    paddingBottom: 15
   },
   containerexternal: {
     flex: 1,
     flexDirection: 'row',
-    paddingBottom: 15,
-    paddingLeft: 20
   },
   nameColumn: {
     flexDirection: 'row',

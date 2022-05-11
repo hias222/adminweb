@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   detail: {
     fontSize: 10,
     textAlign: 'center',
-    top: 280
+    top: 390
   },
   row: {
     flex: 1,

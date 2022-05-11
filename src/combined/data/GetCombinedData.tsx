@@ -34,7 +34,7 @@ export default function GetCombinedData() {
         getCombinedList(combinedID.toString())
             .then(item => {
                 setList(item)
-                console.log(item)
+                //console.log(item)
             });
 
         getDefinitionList()

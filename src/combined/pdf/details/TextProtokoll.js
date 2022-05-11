@@ -9,18 +9,14 @@ const styles = StyleSheet.create({
   normal: {
     fontSize: 12,
     textAlign: 'left',
-    paddingTop: 0,
-    paddingBottom: 0
   },
   smallColumn: {
     flexDirection: 'column',
     width: 15,
-    marginLeft: 25
   },
   leftColumn: {
     flexDirection: 'column',
     width: 30,
-    marginLeft: 25
   },
   nameColumn: {
     flexDirection: 'column',
@@ -28,22 +24,22 @@ const styles = StyleSheet.create({
   },
   clubColumn: {
     flexDirection: 'column',
-    width: 180,
+    width: 200,
   },
   pointColumn: {
     flexDirection: 'column',
-    width: 150,
+    width: 50,
     alignItems: 'flex-end'
   },
   containerinternal: {
-    flex: 1,
+    flex: 0,
     flexDirection: 'row',
-    paddingBottom: 15
+    marginBottom: 15
   },
   containerexternal: {
-    flex: 1,
+    flex: 0,
     flexDirection: 'column',
-    paddingBottom: 50
+    marginBottom: 44,
   },
 });
 
