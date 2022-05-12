@@ -35,7 +35,8 @@ export default function GetCombinedData() {
         { value: '2', label: 'without 1' },
         { value: '3', label: 'without 2' },
         { value: '4', label: 'without 3' },
-        { value: '5', label: 'without 4' }
+        { value: '5', label: 'without 4' },
+        { value: '6', label: 'without 5' }
     ]
 
     useEffect(() => {
@@ -77,6 +78,12 @@ export default function GetCombinedData() {
         setShowErgebnispdf(false)
         setShowDetails(true)
         setShowCerts(false)
+
+        getCombinedList(combinedID.toString(), combinedPlace.toString())
+            .then(item => {
+                setList(item)
+                //console.log(item)
+            });
     }
 
     function handleErgebnisClick(event: any) {
@@ -84,7 +91,6 @@ export default function GetCombinedData() {
         setShowDetails(false)
         setShowCerts(false)
     }
-
 
     function getShowData() {
         if (showDetails) {
@@ -148,7 +154,7 @@ export default function GetCombinedData() {
                     ))}
                 </TextField>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
                 <TextField
                     id="standard-place-id"
                     select
@@ -170,7 +176,7 @@ export default function GetCombinedData() {
                     ))}
                 </TextField>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
                 <Button variant="contained" color="default" onClick={handleDetailsClick}>
                     List
                 </Button>
