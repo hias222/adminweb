@@ -40,7 +40,7 @@ export default function GetCombinedData() {
 
     useEffect(() => {
 
-        getCombinedList(combinedID.toString())
+        getCombinedList(combinedID.toString(), combinedPlace.toString())
             .then(item => {
                 setList(item)
                 //console.log(item)

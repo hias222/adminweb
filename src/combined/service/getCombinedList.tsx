@@ -1,8 +1,8 @@
-export function getCombinedList(combinedNumber: string) {
+export function getCombinedList(combinedNumber: string, place: string) {
 
   let getdataurl = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/resultdata/getevent" : process.env.REACT_APP_RESULTDATA_INTERNAL_URL + "/resultdata/getevent/"
 
-  let paramurl = getdataurl + '?' + new URLSearchParams({ 'mode': 'combined', 'combinedid': combinedNumber })
+  let paramurl = getdataurl + '?' + new URLSearchParams({ 'mode': 'combined', 'combinedid': combinedNumber, 'place': place })
 
   return fetch(paramurl)
     .then(response => {
