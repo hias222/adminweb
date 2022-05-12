@@ -26,8 +26,17 @@ export default function GetCombinedData() {
     const [showErgebnispdf, setShowErgebnispdf] = useState(false);
 
     const [combinedID, setCombinedid] = useState(1);
+    const [combinedPlace, setCombinedPlace] = useState(0);
 
     const [combinedDefinition, setCombinedDefinition] = useState([{ value: '1', label: 'undefined' }]);
+
+    const combinedPlaces = [
+        { value: '1', label: 'all' },
+        { value: '2', label: 'without 1' },
+        { value: '3', label: 'without 2' },
+        { value: '4', label: 'without 3' },
+        { value: '5', label: 'without 4' }
+    ]
 
     useEffect(() => {
 
@@ -48,6 +57,10 @@ export default function GetCombinedData() {
         setCombinedid(event.target.value)
     }
 
+    function handlePlaceChange(event: any) {
+        setCombinedPlace(event.target.value)
+    }
+
     function handleCertClick(event: any) {
         setShowDetails(false)
         setShowErgebnispdf(false)
@@ -55,7 +68,7 @@ export default function GetCombinedData() {
     }
 
     function handleSendClick(event: any) {
-        sendCombinedList(combinedID.toString())
+        sendCombinedList(combinedID.toString(), combinedPlace.toString())
             .then(() => console.log('send success'))
             .catch(() => console.log('Failure send'))
     }
@@ -113,7 +126,7 @@ export default function GetCombinedData() {
 
     return (
         <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={4}>
                 <TextField
                     id="standard-def-id"
                     select
@@ -129,6 +142,28 @@ export default function GetCombinedData() {
                     }}
                 >
                     {combinedDefinition.map((defs) => (
+                        <option key={defs.value} value={defs.value}>
+                            {defs.label}
+                        </option>
+                    ))}
+                </TextField>
+            </Grid>
+            <Grid item xs={4}>
+                <TextField
+                    id="standard-place-id"
+                    select
+                    label="Place"
+                    helperText="Places"
+                    name="Place"
+                    type="text"
+                    value={combinedPlace}
+                    variant="outlined"
+                    onChange={handlePlaceChange}
+                    SelectProps={{
+                        native: true,
+                    }}
+                >
+                    {combinedPlaces.map((defs) => (
                         <option key={defs.value} value={defs.value}>
                             {defs.label}
                         </option>
