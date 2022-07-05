@@ -64,7 +64,19 @@ export default function GetResultData() {
     }
 
     function handleSendClick(event: any) {
-        sendResultList(eventNumber, ageGroup)
+        sendResultList(eventNumber, ageGroup, "1")
+            .then(() => console.log('send success'))
+            .catch(() => console.log('Failure send'))
+    }
+
+    function handleSendClick_2(event: any) {
+        sendResultList(eventNumber, ageGroup,"2")
+            .then(() => console.log('send success'))
+            .catch(() => console.log('Failure send'))
+    }
+
+    function handleSendClick_3(event: any) {
+        sendResultList(eventNumber, ageGroup,"3")
             .then(() => console.log('send success'))
             .catch(() => console.log('Failure send'))
     }
@@ -115,9 +127,19 @@ export default function GetResultData() {
                     ))}
                 </TextField>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={4}>
+                <Button variant="contained" color="default" onClick={handleSendClick_3}>
+                    3.
+                </Button>
+            </Grid>
+            <Grid item xs={4}>
+                <Button variant="contained" color="default" onClick={handleSendClick_2}>
+                    2.
+                </Button>
+            </Grid>
+            <Grid item xs={4}>
                 <Button variant="contained" color="default" onClick={handleSendClick}>
-                    Send
+                    All
                 </Button>
             </Grid>
             <Grid item xs={12}>{results.eventDefinition.competition}</Grid>

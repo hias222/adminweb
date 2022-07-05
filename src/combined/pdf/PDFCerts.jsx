@@ -79,7 +79,7 @@ function CertsDocument(model) {
               <Club>{swimmer.clubname}</Club>
             </View>
             <View style={styles.textbeforestyle}>
-              <AdditionalText>errichte im</AdditionalText>
+              <AdditionalText>erreichte im</AdditionalText>
             </View>
             <View style={styles.textstyle}>
               <StyleText>{swimmer.title}</StyleText>
