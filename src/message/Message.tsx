@@ -10,6 +10,10 @@ import VideoModes from '../datamapping/VideoModes';
 import SendMessages from '../datamapping/SendMessages';
 import RaceModes from '../datamapping/RaceModes';
 import { Card, CardContent, Container, Typography } from '@material-ui/core';
+import Upload from './upload/Upload';
+
+// get files http://jetson/resultdata/getmedia
+// get files http://jetson/resultdata/getmedia?delete=file.mpx
 
 interface Props {
   message: string;
@@ -99,63 +103,82 @@ class message extends React.Component<Props, State> {
         <Navigation
           numberPage={1}
         />
-        <Grid container spacing={2}>
-          <Card >
-            <CardContent>
-              <Typography color="textSecondary" gutterBottom>
-                Show Section
-              </Typography>
-              <Grid item xs={12}>
-                <RaceModes />
-              </Grid>
-            </CardContent>
-          </Card>
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <Card >
+              <CardContent>
+                <Typography color="textSecondary" gutterBottom>
+                  Show Section
+                </Typography>
+                <Grid container spacing={1}>
+                  <Grid item xs={12}>
+                    <RaceModes />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="wk-nr"
+                      label="Wettkampf"
+                      margin="normal"
+                      variant="outlined"
+                      onChange={this.handleChange('event')}
+                    />
+                    <TextField
+                      id="wk-heat"
+                      label="Lauf"
+                      margin="normal"
+                      variant="outlined"
+                      onChange={this.handleChange('heat')}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button variant="contained" color="default" onClick={this.sendHeader()}>Send
+                      <StartIcon /></Button>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
 
-          <Card>
-            <CardContent>
+          <Grid item xs={12}>
+            <Card>
+              <CardContent>
+                <Typography color="textSecondary" gutterBottom>
+                  Video
+                </Typography>
+                <Grid item xs={12}>
+                  <VideoModes />
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12}>
+            <Card>
+              <CardContent>
               <Typography color="textSecondary" gutterBottom>
-                Video
-              </Typography>
-              <Grid item xs={12}>
-                <VideoModes />
-              </Grid>
-            </CardContent>
-          </Card>
+                  Message
+                </Typography>
+                <Grid item xs={12}>
+                  <SendMessages
+                    type="standard" />
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
 
-          <Card>
-            <CardContent>
-              <Grid item xs={12}>
-                <SendMessages
-                  type="standard" />
-              </Grid>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent>
-              <Grid item xs={4}>
-                <TextField
-                  id="wk-nr"
-                  label="Wettkampf"
-                  margin="normal"
-                  variant="outlined"
-                  onChange={this.handleChange('event')}
-                />
-              </Grid>
-              <Grid item xs={4}>
-                <TextField
-                  id="wk-heat"
-                  label="Lauf"
-                  margin="normal"
-                  variant="outlined"
-                  onChange={this.handleChange('heat')}
-                />
-              </Grid>
-              <Grid item xs={4}>
-                <Button variant="contained" color="default" onClick={this.sendHeader()}>Send
-                  <StartIcon /></Button>
-              </Grid>
-            </CardContent>
-          </Card>
+          <Grid item xs={12}>
+            <Card>
+              <CardContent>
+              <Typography color="textSecondary" gutterBottom>
+                  Media
+                </Typography>
+                <Grid item xs={8} >
+                  <Upload
+                    message='Media Upload'
+                  />
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
 
       </Container>

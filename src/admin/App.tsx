@@ -180,15 +180,6 @@ export default class admin extends React.Component<Props, State> {
 
           <Card><CardContent>
             <Typography color="textSecondary" gutterBottom>
-              Video
-            </Typography>
-            <Grid item xs={12}>
-              <VideoModes />
-            </Grid>
-          </CardContent></Card>
-
-          <Card><CardContent>
-            <Typography color="textSecondary" gutterBottom>
               Data
             </Typography>
             <Grid item xs={12}>
