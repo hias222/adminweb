@@ -11,6 +11,7 @@ import SendMessages from '../datamapping/SendMessages';
 import RaceModes from '../datamapping/RaceModes';
 import { Card, CardContent, Container, Typography } from '@material-ui/core';
 import Upload from './upload/Upload';
+import MediaData from './MediaData';
 
 // get files http://jetson/resultdata/getmedia
 // get files http://jetson/resultdata/getmedia?delete=file.mpx
@@ -154,7 +155,7 @@ class message extends React.Component<Props, State> {
           <Grid item xs={12}>
             <Card>
               <CardContent>
-              <Typography color="textSecondary" gutterBottom>
+                <Typography color="textSecondary" gutterBottom>
                   Message
                 </Typography>
                 <Grid item xs={12}>
@@ -168,7 +169,18 @@ class message extends React.Component<Props, State> {
           <Grid item xs={12}>
             <Card>
               <CardContent>
-              <Typography color="textSecondary" gutterBottom>
+                <Typography color="textSecondary" gutterBottom>
+                  ShowMedia
+                </Typography>
+                <MediaData />
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Card>
+              <CardContent>
+                <Typography color="textSecondary" gutterBottom>
                   Media
                 </Typography>
                 <Grid item xs={8} >

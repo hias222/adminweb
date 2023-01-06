@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import SendDatamapping from '../datamapping/SendDatamapping';
 import RaceModes from '../datamapping/RaceModes';
-import VideoModes from '../datamapping/VideoModes';
+//import VideoModes from '../datamapping/VideoModes';
 import ChangeRaceStatus from '../datamapping/ChangeRaceStatus';
 import { Card, CardContent, Container, Typography } from '@material-ui/core';
 

@@ -32,7 +32,7 @@ function getText(swimmerdata) {
   var dataText = []
   swimmerdata.map((detail, index) => {
     var newText1 = detail.distance + 'm ' + detail.swimstyle + ' ' + detail.points + ' Pkt ' + detail.swimtime + ' '
-    dataText.push(newText1)
+     return dataText.push(newText1)
   })
   return dataText
 }

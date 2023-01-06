@@ -52,7 +52,7 @@ export default function GetCombinedData() {
                 setCombinedDefinition(item)
             });
 
-    }, [combinedID])
+    }, [combinedID, combinedPlace])
 
     function handleDefChange(event: any) {
         setCombinedid(event.target.value)
