@@ -40,10 +40,20 @@ export default function MediaData() {
             </Grid>
 
             <Grid key={'grid_update'} container spacing={2}>
-                <Grid item>
-                <Button variant="contained" color="default" key="updateLocal" onClick={updateLocal()}>
-                    Update
-                </Button>
+                <Grid item xs={4}>
+                    <Button variant="contained" color="default" key="updateLocal" onClick={sendFileLocal('4')}>
+                        HLS
+                    </Button>
+                </Grid>
+                <Grid item xs={4}>
+                    <Button variant="contained" color="default" key="updateLocal" onClick={sendFileLocal('5')}>
+                        Dash
+                    </Button>
+                </Grid>
+                <Grid item xs={4}>
+                    <Button variant="contained" color="default" key="updateLocal" onClick={updateLocal()}>
+                        Update List
+                    </Button>
                 </Grid>
             </Grid>
 
