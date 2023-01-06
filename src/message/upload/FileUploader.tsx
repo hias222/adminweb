@@ -49,6 +49,7 @@ class FileUploader extends React.Component<Props, State> {
     ) {
       // This block handles support for IE - if you're not worried about
       // that, you can omit this
+
       this.setState({ dragging: true });
     }
   };
@@ -104,8 +105,18 @@ class FileUploader extends React.Component<Props, State> {
 
   async uploadFiles() {
     console.log("uploadFiles")
-    var promises: [] = [];
+    //var promises: [] = [];
     this.sendRequest(this.state.file)
+    .then((data) => 
+    {
+      this.setState({ successfullUploaded: true, uploading: false });
+      console.log("success " + data)
+    })
+    .catch((err) => {
+      console.log(err)
+      this.setState({ successfullUploaded: false, uploading: false });
+    })
+    /*
     try {
       await Promise.all(promises);
       this.setState({ successfullUploaded: true, uploading: false });
@@ -115,9 +126,10 @@ class FileUploader extends React.Component<Props, State> {
       console.log(e)
       this.setState({ successfullUploaded: false, uploading: false });
     }
+    */
   }
 
-  sendRequest(file: File | null) {
+  async sendRequest(file: File | null) {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
 
@@ -139,10 +151,26 @@ class FileUploader extends React.Component<Props, State> {
         resolve(req.response);
       });
 
-      req.upload.addEventListener("error", event => {
+      req.upload.addEventListener('error', event => {
         var copy = { ...this.state.uploadProgress };
         copy = { state: "error", percentage: 0 };
         this.setState({ uploadProgress: copy });
+        console.log(event)
+        reject(req.response);
+      });
+
+      req.addEventListener("error", event => {
+        console.log(event)
+        reject(req.response);
+      });
+
+      req.addEventListener('abort', event => {
+        console.log(event)
+        reject(req.response);
+      });
+
+      req.addEventListener('fetch', event => {
+        console.log(event)
         reject(req.response);
       });
 
@@ -152,7 +180,7 @@ class FileUploader extends React.Component<Props, State> {
         console.log(file.name)
         formData.append("file", file);
         req.open("POST", this.uploadurl);
-        req.send(formData);
+        req.send(formData)
       } else {
         console.log("null - no upload")
       }

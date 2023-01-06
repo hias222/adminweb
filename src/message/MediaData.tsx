@@ -14,11 +14,13 @@ export default function MediaData() {
     const sendFileLocal = (fileName: string) => (event: any) => {
         console.log(fileName)
         sendFilenName(fileName)
+               
     }
 
     const deleteFileLocal = (fileName: string) => (event: any) => {
         console.log(fileName)
         deleteFile(fileName)
+        setUpdate(update + 1)
     }
 
     const updateLocal = () => (event: any) => {
@@ -42,7 +44,7 @@ export default function MediaData() {
                         <Button variant="contained" color="default" key={item} onClick={sendFileLocal(item)}>
                             {item}
                         </Button>
-                        <Button variant="contained" color="default" key={'del_'+item} onClick={deleteFileLocal(item)}>
+                        <Button variant="contained" color="default" key={'del_' + item} onClick={deleteFileLocal(item)}>
                             <DeleteItem />
                         </Button>
                     </Grid>
