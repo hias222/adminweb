@@ -1,8 +1,10 @@
 import { Button, Grid } from "@material-ui/core";
 import React from "react";
 import { useEffect, useState } from "react";
+import { deleteFile } from "./queries/deleteFile";
 import { getFileList } from "./queries/getFileList";
 import { sendFilenName } from "./queries/sendFileName";
+import DeleteItem from '@material-ui/icons/Delete';
 
 export default function MediaData() {
 
@@ -12,6 +14,11 @@ export default function MediaData() {
     const sendFileLocal = (fileName: string) => (event: any) => {
         console.log(fileName)
         sendFilenName(fileName)
+    }
+
+    const deleteFileLocal = (fileName: string) => (event: any) => {
+        console.log(fileName)
+        deleteFile(fileName)
     }
 
     const updateLocal = () => (event: any) => {
@@ -34,6 +41,9 @@ export default function MediaData() {
                     <Grid key={'grid' + item} item xs={4}>
                         <Button variant="contained" color="default" key={item} onClick={sendFileLocal(item)}>
                             {item}
+                        </Button>
+                        <Button variant="contained" color="default" key={'del_'+item} onClick={deleteFileLocal(item)}>
+                            <DeleteItem />
                         </Button>
                     </Grid>
                 )}
