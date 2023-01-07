@@ -107,15 +107,14 @@ class FileUploader extends React.Component<Props, State> {
     console.log("uploadFiles")
     //var promises: [] = [];
     this.sendRequest(this.state.file)
-    .then((data) => 
-    {
-      this.setState({ successfullUploaded: true, uploading: false });
-      console.log("success " + data)
-    })
-    .catch((err) => {
-      console.log(err)
-      this.setState({ successfullUploaded: false, uploading: false });
-    })
+      .then((data) => {
+        this.setState({ successfullUploaded: true, uploading: false });
+        console.log("success " + data)
+      })
+      .catch((err) => {
+        console.log(err)
+        this.setState({ successfullUploaded: false, uploading: false });
+      })
     /*
     try {
       await Promise.all(promises);
@@ -192,7 +191,7 @@ class FileUploader extends React.Component<Props, State> {
   render() {
     return (
       <Grid container spacing={2}>
-        <Grid item xs={12} >
+        <Grid item xs={12} sm={12} md={6} >
           <FileUploaderPresentationalComponent
             dragging={this.state.dragging}
             file={this.state.file}
@@ -206,8 +205,8 @@ class FileUploader extends React.Component<Props, State> {
             onDrop={this.dropListener}
           />
         </Grid>
-        <Grid item xs={6}>
-          <Button
+        <Grid item xs={12} sm={6} md={3}>
+          <Button fullWidth
             variant="contained"
             component="label"
           >
@@ -222,8 +221,8 @@ class FileUploader extends React.Component<Props, State> {
             />
           </Button>
         </Grid>
-        <Grid item xs={6}>
-          <Button variant="contained" color="default" onClick={(event: any) => {
+        <Grid item xs={12} sm={6} md={3}>
+          <Button variant="contained" color="default" fullWidth onClick={(event: any) => {
             this.uploadFiles()
           }}>
             Upload it

@@ -14,7 +14,7 @@ export default function MediaData() {
     const sendFileLocal = (fileName: string) => (event: any) => {
         console.log(fileName)
         sendFilenName(fileName)
-               
+
     }
 
     const deleteFileLocal = (fileName: string) => (event: any) => {
@@ -38,33 +38,40 @@ export default function MediaData() {
 
     return (
         <div>
-            <Grid container spacing={1}>
+            <Grid container direction={'column'} spacing={4} style={{ textAlign: "center" }}>
+                <Grid item xs={12}>
+                    <Button variant="contained" color="default" key="updateLocal" onClick={updateLocal()}>
+                        Update List
+                    </Button>
+                </Grid>
+                <Grid item xs={12}>
+                </Grid>
+            </Grid>
+            <Grid container spacing={1} >
                 {mediaFiles.map(item =>
-                    <Grid key={'grid' + item} item xs={4}>
-                        <Button variant="contained" color="default" key={item} onClick={sendFileLocal(item)}>
+                    <><Grid key={'grid' + item} item xs={10} sm={4} md={3}>
+                        <Button variant="contained" color="default" key={item} onClick={sendFileLocal(item)} fullWidth>
                             {item}
                         </Button>
-                        <Button variant="contained" color="default" key={'del_' + item} onClick={deleteFileLocal(item)}>
-                            <DeleteItem />
-                        </Button>
-                    </Grid>
+                    </Grid><Grid key={'grid2' + item} item xs={2} sm={2} md={1}>
+                            <Button variant="contained" color="default" key={'del_' + item} onClick={deleteFileLocal(item)}>
+                                <DeleteItem />
+                            </Button>
+                        </Grid></>
                 )}
             </Grid>
 
-            <Grid key={'grid_update'} container spacing={2}>
-                <Grid item xs={4}>
-                    <Button variant="contained" color="default" key="updateLocal" onClick={sendFileLocal('4')}>
+            <Grid key={'grid_update'} container direction={'row'} spacing={2} alignContent="center">
+                <Grid item xs={12}>
+                </Grid>
+                <Grid item xs={6}>
+                    <Button variant="contained" color="default" key="updateLocal" onClick={sendFileLocal('4')} fullWidth>
                         HLS
                     </Button>
                 </Grid>
-                <Grid item xs={4}>
-                    <Button variant="contained" color="default" key="updateLocal" onClick={sendFileLocal('5')}>
+                <Grid item xs={6}>
+                    <Button variant="contained" color="default" key="updateLocal" onClick={sendFileLocal('5')} fullWidth>
                         Dash
-                    </Button>
-                </Grid>
-                <Grid item xs={4}>
-                    <Button variant="contained" color="default" key="updateLocal" onClick={updateLocal()}>
-                        Update List
                     </Button>
                 </Grid>
             </Grid>

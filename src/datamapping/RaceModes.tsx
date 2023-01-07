@@ -28,20 +28,20 @@ export default class RaceModes extends React.Component {
   render() {
     return (
       <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <Button variant="contained" color="default" onClick={this.sendAction('race')}>
+        <Grid item xs={6} sm={4} md={4}>
+          <Button variant="contained" color="default" onClick={this.sendAction('race')} fullWidth>
             Race
             <RaceIcon />
           </Button>
         </Grid>
-        <Grid item xs={4}>
-          <Button variant="contained" color="default" onClick={this.sendAction('clock')}>
+        <Grid item xs={6} sm={4} md={4}>
+          <Button variant="contained" color="default" onClick={this.sendAction('clock')} fullWidth>
             clock
             <ClockIcon />
           </Button>
         </Grid>
-        <Grid item xs={4}>
-        <Button variant="contained" color="default" onClick={this.sendAction('startlist')}>
+        <Grid item xs={6} sm={4} md={4}>
+        <Button variant="contained" color="default" onClick={this.sendAction('startlist')} fullWidth>
           Startlist
           <StartlistIcon />
         </Button>

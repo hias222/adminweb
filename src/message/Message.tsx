@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import StartIcon from '@material-ui/icons/PlayArrow';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import VideoModes from '../datamapping/VideoModes';
 
 import SendMessages from '../datamapping/SendMessages';
 import RaceModes from '../datamapping/RaceModes';
@@ -115,15 +114,19 @@ class message extends React.Component<Props, State> {
                   <Grid item xs={12}>
                     <RaceModes />
                   </Grid>
-                  <Grid item xs={12}>
-                    <TextField
+                </Grid>
+                <Grid container spacing={1} alignItems="center">
+                  <Grid item xs={6} sm={4} md={4}>
+                    <TextField fullWidth
                       id="wk-nr"
                       label="Wettkampf"
                       margin="normal"
                       variant="outlined"
                       onChange={this.handleChange('event')}
                     />
-                    <TextField
+                  </Grid>
+                  <Grid item xs={6} sm={4} md={4}>
+                    <TextField fullWidth
                       id="wk-heat"
                       label="Lauf"
                       margin="normal"
@@ -131,8 +134,8 @@ class message extends React.Component<Props, State> {
                       onChange={this.handleChange('heat')}
                     />
                   </Grid>
-                  <Grid item xs={12}>
-                    <Button variant="contained" color="default" onClick={this.sendHeader()}>Send
+                  <Grid item xs={12} sm={4} md={4}>
+                    <Button variant="contained" color="default" fullWidth onClick={this.sendHeader()}>Send
                       <StartIcon /></Button>
                   </Grid>
                 </Grid>
@@ -140,18 +143,6 @@ class message extends React.Component<Props, State> {
             </Card>
           </Grid>
 
-          <Grid item xs={12}>
-            <Card>
-              <CardContent>
-                <Typography color="textSecondary" gutterBottom>
-                  Video
-                </Typography>
-                <Grid item xs={12}>
-                  <VideoModes />
-                </Grid>
-              </CardContent>
-            </Card>
-          </Grid>
           <Grid item xs={12}>
             <Card>
               <CardContent>
@@ -183,11 +174,9 @@ class message extends React.Component<Props, State> {
                 <Typography color="textSecondary" gutterBottom>
                   Media
                 </Typography>
-                <Grid item xs={8} >
-                  <Upload
-                    message='Media Upload'
-                  />
-                </Grid>
+                <Upload
+                  message='Media Upload'
+                />
               </CardContent>
             </Card>
           </Grid>

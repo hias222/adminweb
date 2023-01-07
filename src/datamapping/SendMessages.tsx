@@ -80,7 +80,7 @@ export default class SendMessages extends React.Component<Props, State> {
   render() {
     return (
       <Grid container spacing={2}>
-        <Grid item xs={8} >
+        <Grid item xs={12} sm={8} md={8} >
           <TextField
             id="standard-name"
             label="Message"
@@ -92,9 +92,9 @@ export default class SendMessages extends React.Component<Props, State> {
             onChange={this.handleChange('message')}
           />
         </Grid>
-        <Grid item xs={4}>
-          <Button variant="contained" color="default" onClick={this.sendMessage('message')}>Send
-          <StartIcon /></Button>
+        <Grid item xs={12} sm={4} md={4}>
+          <Button variant="contained" color="default" fullWidth onClick={this.sendMessage('message')}>Send
+            <StartIcon /></Button>
         </Grid>
       </Grid>
 
