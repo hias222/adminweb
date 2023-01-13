@@ -1,9 +1,9 @@
 import React from 'react';
 import FileUploaderPresentationalComponent from './FileUploaderPresentationalComponent'
-import SelectIcon from '@material-ui/icons/InsertDriveFile';
-import UploadIcon from '@material-ui/icons/Publish';
-import Button from '@material-ui/core/Button';
-import { Grid } from '@material-ui/core';
+import SelectIcon from '@mui/icons-material/InsertDriveFile';
+import UploadIcon from '@mui/icons-material/Publish';
+import Button from '@mui/material/Button';
+import { Grid } from '@mui/material';
 
 //https://spin.atomicobject.com/2018/09/13/file-uploader-react-typescript/
 
@@ -222,7 +222,7 @@ class FileUploader extends React.Component<Props, State> {
           </Button>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <Button variant="contained" color="default" fullWidth onClick={(event: any) => {
+          <Button variant="contained" fullWidth onClick={(event: any) => {
             this.uploadFiles()
           }}>
             Upload it

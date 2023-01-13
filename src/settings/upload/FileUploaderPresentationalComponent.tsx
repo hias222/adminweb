@@ -13,7 +13,7 @@ type PresentationalProps = {
   onDrop: (event: React.DragEvent<HTMLDivElement>) => void;
 };
 
-const FileUploaderPresentationalComponent: React.SFC<
+const FileUploaderPresentationalComponent: React.FC<
   PresentationalProps
 > = props => {
   const {
@@ -55,7 +55,7 @@ const FileUploaderPresentationalComponent: React.SFC<
           Select File
         </span>
       </div>
-      {props.children}
+      {/* {props.children} */}
     </div>
   );
 };

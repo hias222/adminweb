@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 
-import StartIcon from '@material-ui/icons/PlayArrow';
-import TextField from '@material-ui/core/TextField';
+import StartIcon from '@mui/icons-material/PlayArrow';
+import TextField from '@mui/material/TextField';
 
 interface Props {
   type: string;
@@ -93,7 +93,7 @@ export default class SendMessages extends React.Component<Props, State> {
           />
         </Grid>
         <Grid item xs={12} sm={4} md={4}>
-          <Button variant="contained" color="default" fullWidth onClick={this.sendMessage('message')}>Send
+          <Button variant="contained" fullWidth onClick={this.sendMessage('message')}>Send
             <StartIcon /></Button>
         </Grid>
       </Grid>

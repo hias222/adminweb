@@ -3,7 +3,7 @@ import './Result.css';
 import Navigation from '../common/Navigation';
 import Upload from './upload/Upload';
 import GetResultData from './data/GetResultData';
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid } from '@mui/material';
 import GetClubList from './data/GetClubList';
 
 const Result: React.FC = () => {

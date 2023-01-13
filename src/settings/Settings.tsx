@@ -2,7 +2,7 @@ import React from 'react';
 import './Settings.css';
 import Navigation from '../common/Navigation';
 import Upload from './upload/Upload';
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 
 const Settings: React.FC = () => {
   return (

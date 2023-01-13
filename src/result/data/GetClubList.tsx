@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import '../Result.css';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import { getClubList } from '../services/getResultList';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button } from '@mui/material';
 
 export default function GetClubList() {
     const [clubList, setClubList] = useState('');
@@ -23,7 +23,7 @@ export default function GetClubList() {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <Button variant="contained" color="default" onClick={handleListChange}>
+                <Button variant="contained" onClick={handleListChange}>
                     Clubs
                 </Button>
             </Grid>

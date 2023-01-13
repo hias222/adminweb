@@ -1,4 +1,4 @@
-import { Box, TextField } from '@material-ui/core';
+import { Box, TextField } from '@mui/material';
 import React from 'react';
 
 type PresentationalProps = {
@@ -14,7 +14,7 @@ type PresentationalProps = {
   onDrop: (event: React.DragEvent<HTMLDivElement>) => void;
 };
 
-const FileUploaderPresentationalComponent: React.SFC<
+const FileUploaderPresentationalComponent: React.FC<
   PresentationalProps
 > = props => {
   const {
@@ -64,7 +64,7 @@ const FileUploaderPresentationalComponent: React.SFC<
 
         </Box>
       </div>
-      {props.children}
+      {/* {props.children} */}
     </div>
   );
 };

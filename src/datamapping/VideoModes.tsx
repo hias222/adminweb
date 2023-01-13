@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 
-import VideoIcon from '@material-ui/icons/Videocam';
+import VideoIcon from '@mui/icons-material/Videocam';
 
 export default class VideoModes extends React.Component {
 
@@ -25,31 +25,31 @@ export default class VideoModes extends React.Component {
     return (
       <Grid container spacing={2}>
         <Grid item xs={2}>
-          <Button variant="contained" color="default" onClick={this.sendAction('1')}>
+          <Button variant="contained" onClick={this.sendAction('1')}>
             1
             <VideoIcon />
           </Button>
         </Grid>
         <Grid item xs={2}>
-          <Button variant="contained" color="default" onClick={this.sendAction('2')}>
+          <Button variant="contained" onClick={this.sendAction('2')}>
             2
             <VideoIcon />
           </Button>
         </Grid>
         <Grid item xs={2}>
-          <Button variant="contained" color="default" onClick={this.sendAction('3')}>
+          <Button variant="contained" onClick={this.sendAction('3')}>
             3
             <VideoIcon />
           </Button>
         </Grid>
         <Grid item xs={2}>
-          <Button variant="contained" color="default" onClick={this.sendAction('4')}>
+          <Button variant="contained" onClick={this.sendAction('4')}>
             RTMP-HLS
             <VideoIcon />
           </Button>
         </Grid>
         <Grid item xs={2}>
-          <Button variant="contained" color="default" onClick={this.sendAction('5')}>
+          <Button variant="contained" onClick={this.sendAction('5')}>
             RTMP-Dash
             <VideoIcon />
           </Button>

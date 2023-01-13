@@ -2,7 +2,7 @@ import React from 'react';
 import './State.css';
 import Navigation from '../common/Navigation';
 import DatamappingInfo from '../components/DatamappingInfo';
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 
 interface Props { }
 

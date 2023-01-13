@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../Combined.css';
-import Grid from '@material-ui/core/Grid';
-import { Button, TextField } from '@material-ui/core';
+import Grid from '@mui/material/Grid';
+import { Button, TextField } from '@mui/material';
 import { getCombinedList, getDefinitionList, sendCombinedList } from '../service/getCombinedList';
 import CertsDocument from '../pdf/PDFCerts';
 import { CombinedInterface } from '../types/CombinedDataInterface';
@@ -177,22 +177,22 @@ export default function GetCombinedData() {
                 </TextField>
             </Grid>
             <Grid item xs={2}>
-                <Button variant="contained" color="default" onClick={handleDetailsClick}>
+                <Button variant="contained" onClick={handleDetailsClick}>
                     List
                 </Button>
             </Grid>
             <Grid item xs={3}>
-                <Button variant="contained" color="default" onClick={handleSendClick}>
+                <Button variant="contained" onClick={handleSendClick}>
                     Send
                 </Button>
             </Grid>
             <Grid item xs={6}>
-                <Button variant="contained" color="default" onClick={handleCertClick}>
+                <Button variant="contained" onClick={handleCertClick}>
                     Urkunden (PDF)
                 </Button>
             </Grid>
             <Grid item xs={6}>
-                <Button variant="contained" color="default" onClick={handleErgebnisClick}>
+                <Button variant="contained" onClick={handleErgebnisClick}>
                     Ergbebnis (PDF)
                 </Button>
             </Grid>

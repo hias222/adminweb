@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 
-import StartIcon from '@material-ui/icons/PlayArrow';
-import StopIcon from '@material-ui/icons/Stop';
-import ClearIcon from '@material-ui/icons/RestoreFromTrash';
+import StartIcon from '@mui/icons-material/PlayArrow';
+import StopIcon from '@mui/icons-material/Stop';
+import ClearIcon from '@mui/icons-material/RestoreFromTrash';
 
 
 export default class ChangeRaceStatus extends React.Component {
@@ -28,19 +28,19 @@ export default class ChangeRaceStatus extends React.Component {
     return (
       <Grid container spacing={2}>
         <Grid item xs={4}>
-          <Button variant="contained" color="default" onClick={this.sendAction('start')}>
+          <Button variant="contained" onClick={this.sendAction('start')}>
             Start
             <StartIcon />
           </Button>
         </Grid>
         <Grid item xs={4}>
-          <Button variant="contained" color="default" onClick={this.sendAction('stop')}>
+          <Button variant="contained" onClick={this.sendAction('stop')}>
             Stop
             <StopIcon />
           </Button>
         </Grid>
         <Grid item xs={4}>
-          <Button variant="contained" color="default" onClick={this.sendAction('clear')}>
+          <Button variant="contained" onClick={this.sendAction('clear')}>
             clear
             <ClearIcon />
           </Button>

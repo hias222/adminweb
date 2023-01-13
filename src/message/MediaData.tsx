@@ -1,10 +1,10 @@
-import { Button, Grid } from "@material-ui/core";
+import { Button, Grid } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
 import { deleteFile } from "./queries/deleteFile";
 import { getFileList } from "./queries/getFileList";
 import { sendFilenName } from "./queries/sendFileName";
-import DeleteItem from '@material-ui/icons/Delete';
+import DeleteItem from '@mui/icons-material/Delete';
 
 export default function MediaData() {
 
@@ -40,7 +40,7 @@ export default function MediaData() {
         <div>
             <Grid container direction={'column'} spacing={4} style={{ textAlign: "center" }}>
                 <Grid item xs={12}>
-                    <Button variant="contained" color="default" key="updateLocal" onClick={updateLocal()}>
+                    <Button variant="contained" key="updateLocal" onClick={updateLocal()}>
                         Update List
                     </Button>
                 </Grid>
@@ -50,11 +50,11 @@ export default function MediaData() {
             <Grid container spacing={1} >
                 {mediaFiles.map(item =>
                     <><Grid key={'grid' + item} item xs={10} sm={4} md={3}>
-                        <Button variant="contained" color="default" key={item} onClick={sendFileLocal(item)} fullWidth>
+                        <Button variant="contained" key={item} onClick={sendFileLocal(item)} fullWidth>
                             {item}
                         </Button>
                     </Grid><Grid key={'grid2' + item} item xs={2} sm={2} md={1}>
-                            <Button variant="contained" color="default" key={'del_' + item} onClick={deleteFileLocal(item)}>
+                            <Button variant="contained" key={'del_' + item} onClick={deleteFileLocal(item)}>
                                 <DeleteItem />
                             </Button>
                         </Grid></>
@@ -65,12 +65,12 @@ export default function MediaData() {
                 <Grid item xs={12}>
                 </Grid>
                 <Grid item xs={6}>
-                    <Button variant="contained" color="default" key="updateLocal" onClick={sendFileLocal('4')} fullWidth>
+                    <Button variant="contained" key="updateLocal" onClick={sendFileLocal('4')} fullWidth>
                         HLS
                     </Button>
                 </Grid>
                 <Grid item xs={6}>
-                    <Button variant="contained" color="default" key="updateLocal" onClick={sendFileLocal('5')} fullWidth>
+                    <Button variant="contained" key="updateLocal" onClick={sendFileLocal('5')} fullWidth>
                         Dash
                     </Button>
                 </Grid>

@@ -1,11 +1,11 @@
 import React from 'react';
 import FileUploaderPresentationalComponent from './FileUploaderPresentationalComponent'
 
-import NewRelease from '@material-ui/icons/NewReleases';
-import ReplayIcon from '@material-ui/icons/Replay';
-import UploadIcon from '@material-ui/icons/CloudUpload';
-import Button from '@material-ui/core/Button';
-import { Grid } from '@material-ui/core';
+import NewRelease from '@mui/icons-material/NewReleases';
+import ReplayIcon from '@mui/icons-material/Replay';
+import UploadIcon from '@mui/icons-material/CloudUpload';
+import Button from '@mui/material/Button';
+import { Grid } from '@mui/material';
 
 //https://spin.atomicobject.com/2018/09/13/file-uploader-react-typescript/
 
@@ -209,7 +209,7 @@ class FileUploader extends React.Component<Props, State> {
           />
         </Grid>
         <Grid item xs={3}>
-          <Button variant="contained" color="default" onClick={(event: any) => {
+          <Button variant="contained"  onClick={(event: any) => {
             this.uploadFiles()
           }}>
             Upload it
@@ -217,13 +217,13 @@ class FileUploader extends React.Component<Props, State> {
           </Button>
         </Grid>
         <Grid item xs={3}>
-          <Button variant="contained" color="default" onClick={this.sendAction('lenex')}>
+          <Button variant="contained"  onClick={this.sendAction('lenex')}>
             Renew Lenex
               <NewRelease />
           </Button>
         </Grid>
         <Grid item xs={3}>
-          <Button variant="contained" color="default" onClick={this.sendAction('restart')}>
+          <Button variant="contained" onClick={this.sendAction('restart')}>
             Restart
               <ReplayIcon />
           </Button>

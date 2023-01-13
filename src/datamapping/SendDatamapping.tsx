@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import { Grid } from '@material-ui/core';
+import Button from '@mui/material/Button';
+import { Grid } from '@mui/material';
 
 interface Props {
     event_type: string;
@@ -62,19 +62,19 @@ export default class SendDatamapping extends React.Component<Props, State> {
         return (
             <Grid container>
                 <Grid item xs={3}>
-                    <Button variant="contained" color="default" onClick={this.sendFinal("ALL")}>ALL
+                    <Button variant="contained" onClick={this.sendFinal("ALL")}>ALL
                     </Button>
                 </Grid>
                 <Grid item xs={3}>
-                    <Button variant="contained" color="default" onClick={this.sendFinal("FIN")}>Finale
+                    <Button variant="contained" onClick={this.sendFinal("FIN")}>Finale
                     </Button>
                 </Grid>
                 <Grid item xs={3}>
-                    <Button variant="contained" color="default" onClick={this.sendFinal("PRE")}>Vorläufe
+                    <Button variant="contained" onClick={this.sendFinal("PRE")}>Vorläufe
                     </Button>
                 </Grid>
                 <Grid item xs={3}>
-                    <Button variant="contained" color="default" onClick={this.sendFinal("TIM")}>Normal
+                    <Button variant="contained" onClick={this.sendFinal("TIM")}>Normal
                     </Button>
                 </Grid>
                 <Grid item xs={12}>

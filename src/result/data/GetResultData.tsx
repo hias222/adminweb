@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../Result.css';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import { getResultList, getAgeList, sendResultList, getEventList } from '../services/getResultList';
 import { ResultDataInterface } from '../types/ResultDataInterface';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button } from '@mui/material';
 
 export default function GetResultData() {
 
@@ -70,13 +70,13 @@ export default function GetResultData() {
     }
 
     function handleSendClick_2(event: any) {
-        sendResultList(eventNumber, ageGroup,"2")
+        sendResultList(eventNumber, ageGroup, "2")
             .then(() => console.log('send success'))
             .catch(() => console.log('Failure send'))
     }
 
     function handleSendClick_3(event: any) {
-        sendResultList(eventNumber, ageGroup,"3")
+        sendResultList(eventNumber, ageGroup, "3")
             .then(() => console.log('send success'))
             .catch(() => console.log('Failure send'))
     }
@@ -128,17 +128,17 @@ export default function GetResultData() {
                 </TextField>
             </Grid>
             <Grid item xs={4}>
-                <Button variant="contained" color="default" onClick={handleSendClick_3}>
+                <Button variant="contained"  onClick={handleSendClick_3}>
                     3.
                 </Button>
             </Grid>
             <Grid item xs={4}>
-                <Button variant="contained" color="default" onClick={handleSendClick_2}>
+                <Button variant="contained" onClick={handleSendClick_2}>
                     2.
                 </Button>
             </Grid>
             <Grid item xs={4}>
-                <Button variant="contained" color="default" onClick={handleSendClick}>
+                <Button variant="contained" onClick={handleSendClick}>
                     All
                 </Button>
             </Grid>

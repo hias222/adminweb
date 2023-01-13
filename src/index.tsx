@@ -3,22 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './admin/App';
 import * as serviceWorker from './serviceWorker';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import Settings from './settings/Settings';
 import State from './state/State';
-import Message from './message/Message';
 import Result from './result/Result';
 import Combined from './combined/Combined';
+import Message from './message/Message';
 
 const routing = (
     <BrowserRouter basename="/admin">
-        <Route path="/" exact component={App} />
-        <Route path="/Settings" component={Settings} />
-        <Route path="/State" component={State} />
-        <Route path="/Message" component={Message} />
-        <Route path="/Admin" component={App} />
-        <Route path="/Resultdata" component={Result} />
-        <Route path="/Combined" component={Combined} />
+        <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/Settings" element={<Settings />} />
+            <Route path="/State" element={<State />} />
+            <Route path="/Message" element={<Message />} />
+            <Route path="/Admin" element={<App />} />
+            <Route path="/Resultdata" element={<Result />} />
+            {/* <Route path="/Combined" element={<Combined />} /> */}
+        </Routes>
     </BrowserRouter>
 )
 

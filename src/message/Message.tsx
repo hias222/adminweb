@@ -1,23 +1,25 @@
 import React from 'react';
 import '../style/App.css';
 import Navigation from '../common/Navigation';
-import Grid from '@material-ui/core/Grid';
-import StartIcon from '@material-ui/icons/PlayArrow';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Grid from '@mui/material/Grid';
+import StartIcon from '@mui/icons-material/PlayArrow';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 import SendMessages from '../datamapping/SendMessages';
 import RaceModes from '../datamapping/RaceModes';
-import { Card, CardContent, Container, Typography } from '@material-ui/core';
+import { Card, CardContent, Container, Typography } from '@mui/material';
 import Upload from './upload/Upload';
 import MediaData from './MediaData';
 
 // get files http://jetson/resultdata/getmedia
 // get files http://jetson/resultdata/getmedia?delete=file.mpx
 
-interface Props {
+/* interface Props {
   message: string;
-}
+} */
+
+interface Props { }
 
 interface State {
   message: string,
@@ -28,7 +30,7 @@ interface State {
   rank: string,
 };
 
-class message extends React.Component<Props, State> {
+class Message extends React.Component<Props, State> {
   state: State = {
     message: "start",
     backend: [],
@@ -94,8 +96,7 @@ class message extends React.Component<Props, State> {
         });
         break;
     }
-  };
-
+  }
 
   render() {
     return (
@@ -135,7 +136,7 @@ class message extends React.Component<Props, State> {
                     />
                   </Grid>
                   <Grid item xs={12} sm={4} md={4}>
-                    <Button variant="contained" color="default" fullWidth onClick={this.sendHeader()}>Send
+                    <Button variant="contained" fullWidth onClick={this.sendHeader()}>Send
                       <StartIcon /></Button>
                   </Grid>
                 </Grid>
@@ -188,4 +189,4 @@ class message extends React.Component<Props, State> {
 }
 
 
-export default message
+export default Message
