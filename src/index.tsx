@@ -19,7 +19,7 @@ const routing = (
             <Route path="/Message" element={<Message />} />
             <Route path="/Admin" element={<App />} />
             <Route path="/Resultdata" element={<Result />} />
-            {/* <Route path="/Combined" element={<Combined />} /> */}
+            <Route path="/Combined" element={<Combined />} />
         </Routes>
     </BrowserRouter>
 )
