@@ -12,27 +12,13 @@ import { Card, CardContent, Container, Typography } from '@mui/material';
 
 import './App.css';
 
-interface Props {
-  message: string;
-}
-
-interface State {
-  message: string,
-  backend: [],
-  event: string,
-  heat: string,
-  lane: string,
-  rank: string,
-};
-
- const App = () => {
+const App = () => {
 
   const [eventnr, setEvent] = useState("1");
   const [heat, setHeat] = useState("1");
   const [lane, setLane] = useState("1");
   const [rank, setRank] = useState("1");
 
-  let message: string = "";
   let backendConnect = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/datamapping/send-mqtt" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/send-mqtt"
 
   const sendHeader = () => (event: any) => {
@@ -171,7 +157,7 @@ interface State {
 
       </Grid>
     </Container>
-    </div>
+  </div>
 }
 
 export default App;
