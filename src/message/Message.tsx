@@ -11,6 +11,7 @@ import RaceModes from '../datamapping/RaceModes';
 import { Card, CardContent, Container, Typography } from '@mui/material';
 import Upload from './upload/Upload';
 import MediaData from './MediaData';
+import PresentLanes from '../datamapping/PresentLanes';
 
 // get files http://jetson/resultdata/getmedia
 // get files http://jetson/resultdata/getmedia?delete=file.mpx
@@ -116,6 +117,7 @@ class Message extends React.Component<Props, State> {
                     <RaceModes />
                   </Grid>
                 </Grid>
+
                 <Grid container spacing={1} alignItems="center">
                   <Grid item xs={6} sm={4} md={4}>
                     <TextField fullWidth
@@ -138,6 +140,21 @@ class Message extends React.Component<Props, State> {
                   <Grid item xs={12} sm={4} md={4}>
                     <Button variant="contained" fullWidth onClick={this.sendHeader()}>Send
                       <StartIcon /></Button>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Card>
+              <CardContent>
+                <Typography color="textSecondary" gutterBottom>
+                  Show
+                </Typography>
+                <Grid container spacing={1}>
+                  <Grid item xs={12}>
+                    <PresentLanes />
                   </Grid>
                 </Grid>
               </CardContent>
