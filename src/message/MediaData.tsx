@@ -64,12 +64,17 @@ export default function MediaData() {
             <Grid key={'grid_update'} container direction={'row'} spacing={2} alignContent="center">
                 <Grid item xs={12}>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
+                    <Button variant="contained" key="updateLocal" onClick={sendFileLocal('1')} fullWidth>
+                        Playlist
+                    </Button>
+                </Grid>
+                <Grid item xs={4}>
                     <Button variant="contained" key="updateLocal" onClick={sendFileLocal('4')} fullWidth>
                         HLS
                     </Button>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                     <Button variant="contained" key="updateLocal" onClick={sendFileLocal('5')} fullWidth>
                         Dash
                     </Button>
