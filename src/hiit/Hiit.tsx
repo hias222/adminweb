@@ -19,6 +19,7 @@ interface Props { }
 
 interface State {
   type: string,
+  event: string,
   shigh: string,
   slow: string,
 };
@@ -26,6 +27,7 @@ interface State {
 class Hiit extends React.Component<Props, State> {
   state: State = {
     type: "hiit",
+    event: "config",
     shigh: "30",
     slow: "10",
   };
@@ -47,6 +49,18 @@ class Hiit extends React.Component<Props, State> {
     //
   };
 
+  startHiit = (mode: string) => (event: any) => {
+    console.log(this.backendConnect + " high " + this.state.shigh + " low " + this.state.slow)
+
+    var newEvent = { "type": "hiit", "event": mode }
+    fetch(this.backendConnect, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newEvent)
+    })
+      .catch(console.log)
+    //
+  };
 
   handleChange = (val: string) => (event: any) => {
     switch (val) {
@@ -73,7 +87,6 @@ class Hiit extends React.Component<Props, State> {
           <Grid item xs={12}>
             <Card >
               <CardContent>
-
                 <Grid container spacing={1} alignItems="center">
                   <Grid item xs={6} sm={4} md={4}>
                     <TextField fullWidth
@@ -97,6 +110,17 @@ class Hiit extends React.Component<Props, State> {
                   </Grid>
                   <Grid item xs={12} sm={4} md={4}>
                     <Button variant="contained" fullWidth onClick={this.sendHeader()}>Send
+                      <StartIcon /></Button>
+                  </Grid>
+                </Grid>
+
+                <Grid container spacing={1} alignItems="center">
+                  <Grid item xs={12} sm={6} md={6}>
+                    <Button variant="contained" fullWidth onClick={this.startHiit('start')}>Start
+                      <StartIcon /></Button>
+                  </Grid>
+                  <Grid item xs={12} sm={5} md={6}>
+                    <Button variant="contained" fullWidth onClick={this.startHiit('stop')}>Stop
                       <StartIcon /></Button>
                   </Grid>
                 </Grid>
