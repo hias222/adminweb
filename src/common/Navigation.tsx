@@ -8,6 +8,7 @@ import StateIcon from '@mui/icons-material/TrendingUpRounded';
 import MessageIcon from '@mui/icons-material/Message';
 import ResultIcon from '@mui/icons-material/TvOutlined';
 import CombinedIcon from '@mui/icons-material/MultilineChart';
+import HiitIcon from '@mui/icons-material/SpeedRounded'
 
 // const DatamappingInfo: React.FunctionComponent<Props> = (props) => {
 export default function Navigation (props: {
@@ -32,6 +33,7 @@ export default function Navigation (props: {
       <BottomNavigationAction component={Link} to="/Resultdata" label="Result" icon={<ResultIcon />} />
       <BottomNavigationAction component={Link} to="/Combined" label="Combined" icon={<CombinedIcon />} />
       <BottomNavigationAction component={Link} to="/State" label="State" icon={<StateIcon />} />
+      <BottomNavigationAction component={Link} to="/Hiit" label="Hiit" icon={<HiitIcon />} />
     </BottomNavigation>
   );
 }

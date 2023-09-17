@@ -9,6 +9,7 @@ import State from './state/State';
 import Result from './result/Result';
 import Combined from './combined/Combined';
 import Message from './message/Message';
+import Hiit from './hiit/Hiit';
 
 const routing = (
     <BrowserRouter basename="/admin">
@@ -20,6 +21,7 @@ const routing = (
             <Route path="/Admin" element={<App />} />
             <Route path="/Resultdata" element={<Result />} />
             <Route path="/Combined" element={<Combined />} />
+            <Route path="/Hiit" element={<Hiit />} />
         </Routes>
     </BrowserRouter>
 )
