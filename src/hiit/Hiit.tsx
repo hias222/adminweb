@@ -20,16 +20,22 @@ interface Props { }
 interface State {
   type: string,
   event: string,
-  shigh: string,
-  slow: string,
+  departure: string,
+  intensity: string,
+  order: string;
+  gap: string;
+  varianz: string;
 };
 
 class Hiit extends React.Component<Props, State> {
   state: State = {
     type: "hiit",
     event: "config",
-    shigh: "30",
-    slow: "10",
+    departure: "30",
+    intensity: "10",
+    order: "1",
+    gap: "5",
+    varianz: "1",
   };
 
   public message: string = "";
@@ -38,7 +44,7 @@ class Hiit extends React.Component<Props, State> {
 
 
   sendHeader = () => (event: any) => {
-    console.log(this.backendConnect + " high " + this.state.shigh + " low " + this.state.slow)
+    console.log(this.backendConnect + " high " + this.state.departure + " low " + this.state.intensity)
 
     fetch(this.backendConnect, {
       method: 'post',
@@ -50,7 +56,7 @@ class Hiit extends React.Component<Props, State> {
   };
 
   startHiit = (mode: string) => (event: any) => {
-    console.log(this.backendConnect + " high " + this.state.shigh + " low " + this.state.slow)
+    console.log(this.backendConnect + " high " + this.state.departure + " low " + this.state.intensity)
 
     var newEvent = { "type": "hiit", "event": mode }
     fetch(this.backendConnect, {
@@ -64,14 +70,29 @@ class Hiit extends React.Component<Props, State> {
 
   handleChange = (val: string) => (event: any) => {
     switch (val) {
-      case "shigh":
+      case "departure":
         this.setState({
-          shigh: event.target.value
+          departure: event.target.value
         });
         break;
-      case "slow":
+      case "intensity":
         this.setState({
-          slow: event.target.value
+          intensity: event.target.value
+        });
+        break;
+      case "order":
+        this.setState({
+          order: event.target.value
+        });
+        break;
+      case "gap":
+        this.setState({
+          gap: event.target.value
+        });
+        break;
+      case "varianz":
+        this.setState({
+          varianz: event.target.value
         });
         break;
     }
@@ -91,21 +112,43 @@ class Hiit extends React.Component<Props, State> {
                   <Grid item xs={6} sm={4} md={4}>
                     <TextField fullWidth
                       id="high"
-                      label="high intensity"
+                      label="departure"
                       margin="normal"
                       variant="outlined"
-                      value={this.state.shigh}
-                      onChange={this.handleChange('shigh')}
+                      value={this.state.departure}
+                      onChange={this.handleChange('departure')}
                     />
                   </Grid>
                   <Grid item xs={6} sm={4} md={4}>
                     <TextField fullWidth
-                      id="low"
-                      label="low intensity"
+                      id="high"
+                      label="gap"
                       margin="normal"
                       variant="outlined"
-                      value={this.state.slow}
-                      onChange={this.handleChange('slow')}
+                      value={this.state.gap}
+                      onChange={this.handleChange('gap')}
+                    />
+                  </Grid>
+                  <Grid item xs={6} sm={4} md={4}>
+                    <TextField fullWidth
+                      id="high"
+                      label="varianz"
+                      margin="normal"
+                      variant="outlined"
+                      value={this.state.varianz}
+                      onChange={this.handleChange('varianz')}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid container spacing={1} alignItems="center">
+                  <Grid item xs={6} sm={4} md={4}>
+                    <TextField fullWidth
+                      id="low"
+                      label="intensity"
+                      margin="normal"
+                      variant="outlined"
+                      value={this.state.intensity}
+                      onChange={this.handleChange('intensity')}
                     />
                   </Grid>
                   <Grid item xs={12} sm={4} md={4}>
