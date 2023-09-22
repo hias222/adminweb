@@ -5,8 +5,10 @@ import Grid from '@mui/material/Grid';
 import StartIcon from '@mui/icons-material/PlayArrow';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { DataGrid, GridColDef, GridRowModel, GridValueGetterParams } from '@mui/x-data-grid';
 
 import { Card, CardContent, Container, Typography } from '@mui/material';
+import { swimmerPosition } from './SwimmerPosition';
 
 // get files http://jetson/resultdata/getmedia
 // get files http://jetson/resultdata/getmedia?delete=file.mpx
@@ -25,9 +27,22 @@ interface State {
   order: string;
   gap: string;
   varianz: string;
+  rows: swimmerPosition[];
 };
 
 class Hiit extends React.Component<Props, State> {
+
+  rows: swimmerPosition[] = [
+    { id: '1', order: 1, intensity: '20' },
+    { id: '2', order: 2, intensity: '22' },
+    { id: '3', order: 3, intensity: '0' },
+    { id: '4', order: 4, intensity: '0' },
+    { id: '5', order: 5, intensity: '0' },
+    { id: '6', order: 6, intensity: '0' },
+    { id: '7', order: 7, intensity: '0' },
+    { id: '8', order: 8, intensity: '0' },
+  ];
+
   state: State = {
     type: "hiit",
     event: "config",
@@ -36,10 +51,21 @@ class Hiit extends React.Component<Props, State> {
     order: "1",
     gap: "5",
     varianz: "1",
+    rows: this.rows
   };
 
-  public message: string = "";
+  columns: GridColDef[] = [
+    { field: 'order', headerName: 'Order', width: 40 },
+    {
+      field: 'intensity',
+      headerName: 'Intense s',
+      width: 100,
+      editable: true,
+    },
+  ];
 
+
+  public message: string = "";
   private backendConnect = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/datamapping/send-json" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/send-json"
 
 
@@ -53,6 +79,18 @@ class Hiit extends React.Component<Props, State> {
     })
       .catch(console.log)
     //
+  };
+
+  saveData = () => (event: any) => {
+    console.log(event.row)
+    console.log(this.state.rows)
+
+  };
+
+  processRowUpdate = (newRow: swimmerPosition) => {
+    var newRows = this.state.rows.map((row) => (row.id === newRow.id ? newRow : row))
+    this.setState({rows : newRows})
+    return newRow;
   };
 
   startHiit = (mode: string) => (event: any) => {
@@ -140,6 +178,26 @@ class Hiit extends React.Component<Props, State> {
                     />
                   </Grid>
                 </Grid>
+
+                <DataGrid
+                  rows={this.state.rows}
+                  columns={this.columns}
+                  //editMode="row"
+                  initialState={{
+                    pagination: {
+                      paginationModel: {
+                        pageSize: 5,
+                      },
+                    },
+                  }}
+                  pageSizeOptions={[5]}
+                  //disableRowSelectionOnClick
+                  //disableColumnMenu
+                  processRowUpdate={this.processRowUpdate}
+                  //onCellEditStop={this.saveData()}
+                />
+
+
                 <Grid container spacing={1} alignItems="center">
                   <Grid item xs={6} sm={4} md={4}>
                     <TextField fullWidth
