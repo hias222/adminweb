@@ -5,9 +5,9 @@ import Grid from '@mui/material/Grid';
 import StartIcon from '@mui/icons-material/PlayArrow';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { DataGrid, GridColDef, GridRowModel, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
-import { Card, CardContent, Container, Typography } from '@mui/material';
+import { Card, CardContent, Container } from '@mui/material';
 import { swimmerPosition } from './SwimmerPosition';
 
 // get files http://jetson/resultdata/getmedia
@@ -23,8 +23,6 @@ interface State {
   type: string,
   event: string,
   departure: string,
-  intensity: string,
-  order: string;
   gap: string;
   varianz: string;
   rows: swimmerPosition[];
@@ -47,8 +45,6 @@ class Hiit extends React.Component<Props, State> {
     type: "hiit",
     event: "config",
     departure: "30",
-    intensity: "10",
-    order: "1",
     gap: "5",
     varianz: "1",
     rows: this.rows
@@ -70,7 +66,7 @@ class Hiit extends React.Component<Props, State> {
 
 
   sendHeader = () => (event: any) => {
-    console.log(this.backendConnect + " high " + this.state.departure + " low " + this.state.intensity)
+    console.log(this.backendConnect + " departure " + this.state.departure)
 
     fetch(this.backendConnect, {
       method: 'post',
@@ -89,12 +85,12 @@ class Hiit extends React.Component<Props, State> {
 
   processRowUpdate = (newRow: swimmerPosition) => {
     var newRows = this.state.rows.map((row) => (row.id === newRow.id ? newRow : row))
-    this.setState({rows : newRows})
+    this.setState({ rows: newRows })
     return newRow;
   };
 
   startHiit = (mode: string) => (event: any) => {
-    console.log(this.backendConnect + " high " + this.state.departure + " low " + this.state.intensity)
+    console.log(this.backendConnect + " deaparture " + this.state.departure)
 
     var newEvent = { "type": "hiit", "event": mode }
     fetch(this.backendConnect, {
@@ -111,16 +107,6 @@ class Hiit extends React.Component<Props, State> {
       case "departure":
         this.setState({
           departure: event.target.value
-        });
-        break;
-      case "intensity":
-        this.setState({
-          intensity: event.target.value
-        });
-        break;
-      case "order":
-        this.setState({
-          order: event.target.value
         });
         break;
       case "gap":
@@ -179,42 +165,34 @@ class Hiit extends React.Component<Props, State> {
                   </Grid>
                 </Grid>
 
-                <DataGrid
-                  rows={this.state.rows}
-                  columns={this.columns}
-                  //editMode="row"
-                  initialState={{
-                    pagination: {
-                      paginationModel: {
-                        pageSize: 5,
+                <Grid container spacing={0} alignItems="center">
+                  <DataGrid
+                    rows={this.state.rows}
+                    columns={this.columns}
+                    //editMode="row"
+                    initialState={{
+                      pagination: {
+                        paginationModel: {
+                          pageSize: 10,
+                        },
                       },
-                    },
-                  }}
-                  pageSizeOptions={[5]}
-                  //disableRowSelectionOnClick
-                  //disableColumnMenu
-                  processRowUpdate={this.processRowUpdate}
+                    }}
+                    pageSizeOptions={[5]}
+                    //disableRowSelectionOnClick
+                    //disableColumnMenu
+                    processRowUpdate={this.processRowUpdate}
                   //onCellEditStop={this.saveData()}
-                />
-
+                  />
+                </Grid>
 
                 <Grid container spacing={1} alignItems="center">
-                  <Grid item xs={6} sm={4} md={4}>
-                    <TextField fullWidth
-                      id="low"
-                      label="intensity"
-                      margin="normal"
-                      variant="outlined"
-                      value={this.state.intensity}
-                      onChange={this.handleChange('intensity')}
-                    />
-                  </Grid>
                   <Grid item xs={12} sm={4} md={4}>
                     <Button variant="contained" fullWidth onClick={this.sendHeader()}>Send
                       <StartIcon /></Button>
                   </Grid>
                 </Grid>
-
+              </CardContent>
+              <CardContent>
                 <Grid container spacing={1} alignItems="center">
                   <Grid item xs={12} sm={6} md={6}>
                     <Button variant="contained" fullWidth onClick={this.startHiit('start')}>Start
