@@ -21,6 +21,7 @@ interface Props { }
 
 interface State {
   type: string,
+  mode: string;
   event: string,
   departure: string,
   gap: string;
@@ -39,9 +40,12 @@ class Hiit extends React.Component<Props, State> {
     { id: '6', order: 6, intensity: '0' },
     { id: '7', order: 7, intensity: '0' },
     { id: '8', order: 8, intensity: '0' },
+    { id: '9', order: 9, intensity: '0' },
+    { id: '10', order: 10, intensity: '0' },
   ];
 
   state: State = {
+    mode: 'data',
     type: "hiit",
     event: "config",
     departure: "30",
@@ -58,20 +62,29 @@ class Hiit extends React.Component<Props, State> {
       width: 100,
       editable: true,
     },
+    {
+      field: 'name',
+      headerName: 'Name',
+      width: 200,
+      editable: true,
+    },
   ];
 
 
   public message: string = "";
   private backendConnect = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/datamapping/send-json" : process.env.REACT_APP_DATAMAPPING_INTERNAL_URL + "/datamapping/send-json"
 
-
-  sendHeader = () => (event: any) => {
-    console.log(this.backendConnect + " departure " + this.state.departure)
+  sendHeader = (mode: string) => (event: any) => {
+    console.log(this.backendConnect + " departure " + this.state.departure + ' at ' + mode)
+    var newMode = {mode: mode}
+    var oldState = this.state
+    var newState = {...oldState, newMode}
+    this.setState({mode: mode})
 
     fetch(this.backendConnect, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(newState)
     })
       .catch(console.log)
     //
@@ -80,7 +93,6 @@ class Hiit extends React.Component<Props, State> {
   saveData = () => (event: any) => {
     console.log(event.row)
     console.log(this.state.rows)
-
   };
 
   processRowUpdate = (newRow: swimmerPosition) => {
@@ -91,7 +103,7 @@ class Hiit extends React.Component<Props, State> {
 
   startHiit = (mode: string) => (event: any) => {
     console.log(this.backendConnect + " deaparture " + this.state.departure)
-
+    this.setState({mode: 'data'})
     var newEvent = { "type": "hiit", "event": mode }
     fetch(this.backendConnect, {
       method: 'post',
@@ -173,7 +185,7 @@ class Hiit extends React.Component<Props, State> {
                     initialState={{
                       pagination: {
                         paginationModel: {
-                          pageSize: 10,
+                          pageSize: 6,
                         },
                       },
                     }}
@@ -186,11 +198,16 @@ class Hiit extends React.Component<Props, State> {
                 </Grid>
 
                 <Grid container spacing={1} alignItems="center">
-                  <Grid item xs={12} sm={4} md={4}>
-                    <Button variant="contained" fullWidth onClick={this.sendHeader()}>Send
+                  <Grid item xs={12} sm={6} md={6}>
+                    <Button variant="contained" fullWidth onClick={this.sendHeader('config')}>Send
+                      <StartIcon /></Button>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={6}>
+                    <Button variant="contained" fullWidth onClick={this.sendHeader('data')}>Show
                       <StartIcon /></Button>
                   </Grid>
                 </Grid>
+
               </CardContent>
               <CardContent>
                 <Grid container spacing={1} alignItems="center">
