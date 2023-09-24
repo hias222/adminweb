@@ -32,10 +32,10 @@ interface State {
 class Hiit extends React.Component<Props, State> {
 
   rows: swimmerPosition[] = [
-    { id: '1', order: 1, intensity: '20' },
-    { id: '2', order: 2, intensity: '22' },
-    { id: '3', order: 3, intensity: '0' },
-    { id: '4', order: 4, intensity: '0' },
+    { id: '1', order: 1, intensity: '33' },
+    { id: '2', order: 2, intensity: '34' },
+    { id: '3', order: 3, intensity: '35' },
+    { id: '4', order: 4, intensity: '35' },
     { id: '5', order: 5, intensity: '0' },
     { id: '6', order: 6, intensity: '0' },
     { id: '7', order: 7, intensity: '0' },
@@ -48,7 +48,7 @@ class Hiit extends React.Component<Props, State> {
     mode: 'data',
     type: "hiit",
     event: "config",
-    departure: "30",
+    departure: "55",
     gap: "5",
     varianz: "1",
     rows: this.rows
