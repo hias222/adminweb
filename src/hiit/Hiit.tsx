@@ -24,6 +24,7 @@ interface State {
   mode: string;
   event: string,
   departure: string,
+  lane: string,
   gap: string;
   varianz: string;
   rows: swimmerPosition[];
@@ -49,6 +50,7 @@ class Hiit extends React.Component<Props, State> {
     type: "hiit",
     event: "config",
     departure: "55",
+    lane: "1" ,
     gap: "5",
     varianz: "1",
     rows: this.rows
@@ -104,7 +106,7 @@ class Hiit extends React.Component<Props, State> {
   startHiit = (mode: string) => (event: any) => {
     console.log(this.backendConnect + " deaparture " + this.state.departure)
     this.setState({mode: 'data'})
-    var newEvent = { "type": "hiit", "event": mode }
+    var newEvent = { "type": "hiit", "event": mode, "lane": this.state.lane }
     fetch(this.backendConnect, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -116,6 +118,11 @@ class Hiit extends React.Component<Props, State> {
 
   handleChange = (val: string) => (event: any) => {
     switch (val) {
+      case "lane":
+        this.setState({
+          lane: event.target.value
+        });
+        break;
       case "departure":
         this.setState({
           departure: event.target.value
@@ -145,6 +152,16 @@ class Hiit extends React.Component<Props, State> {
             <Card >
               <CardContent>
                 <Grid container spacing={1} alignItems="center">
+                <Grid item xs={6} sm={4} md={4}>
+                    <TextField fullWidth
+                      id="lane"
+                      label="lane"
+                      margin="normal"
+                      variant="outlined"
+                      value={this.state.lane}
+                      onChange={this.handleChange('lane')}
+                    />
+                  </Grid>
                   <Grid item xs={6} sm={4} md={4}>
                     <TextField fullWidth
                       id="high"
