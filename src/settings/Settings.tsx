@@ -37,7 +37,7 @@ const Settings: React.FC = () => {
   return (
     <Container maxWidth='md' key={1234}>
       <Navigation
-        numberPage={2} />
+        numberPage={3} />
 
       <Grid container spacing={1}>
         <Grid item xs={12}>

@@ -10,7 +10,7 @@ const Result: React.FC = () => {
   return (
     <Container maxWidth='md'>
       <Navigation
-        numberPage={3} />
+        numberPage={4} />
       <Grid container spacing={1}>
         <Grid item xs={8} >
           <GetResultData />

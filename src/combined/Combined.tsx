@@ -9,7 +9,7 @@ const Combined: React.FC = () => {
   return (
     <Container maxWidth='md'>
       <Navigation
-        numberPage={4} />
+        numberPage={5} />
       <Grid container spacing={1}>
         <Grid item xs={8} >
           <GetCombinedData/>

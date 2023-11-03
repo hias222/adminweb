@@ -103,7 +103,7 @@ class Message extends React.Component<Props, State> {
     return (
       <Container maxWidth='md'>
         <Navigation
-          numberPage={1}
+          numberPage={2}
         />
         <Grid container spacing={1}>
           <Grid item xs={12}>
