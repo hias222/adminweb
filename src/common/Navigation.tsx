@@ -28,11 +28,11 @@ export default function Navigation (props: {
       value={value}
     >
       <BottomNavigationAction component={Link} to="/" label="Admin" icon={<AdminIcon />} />
+      <BottomNavigationAction component={Link} to="/Display" label="Display" icon={<StateIcon />} />
       <BottomNavigationAction component={Link} to="/Message" label="Message" icon={<MessageIcon />} />
       <BottomNavigationAction component={Link} to="/Settings" label="Settings" icon={<SettingsIcon />} />
       <BottomNavigationAction component={Link} to="/Resultdata" label="Result" icon={<ResultIcon />} />
       <BottomNavigationAction component={Link} to="/Combined" label="Combined" icon={<CombinedIcon />} />
-      <BottomNavigationAction component={Link} to="/State" label="State" icon={<StateIcon />} />
       <BottomNavigationAction component={Link} to="/Hiit" label="Hiit" icon={<HiitIcon />} />
     </BottomNavigation>
   );

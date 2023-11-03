@@ -145,7 +145,7 @@ class Hiit extends React.Component<Props, State> {
     return (
       <Container maxWidth='md'>
         <Navigation
-          numberPage={1}
+          numberPage={6}
         />
         <Grid container spacing={1}>
           <Grid item xs={12}>

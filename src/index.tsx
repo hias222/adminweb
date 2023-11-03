@@ -5,7 +5,7 @@ import App from './admin/App';
 import * as serviceWorker from './serviceWorker';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import Settings from './settings/Settings';
-import State from './state/State';
+import Display from './display/Display';
 import Result from './result/Result';
 import Combined from './combined/Combined';
 import Message from './message/Message';
@@ -16,7 +16,7 @@ const routing = (
         <Routes>
             <Route path="/" element={<App />} />
             <Route path="/Settings" element={<Settings />} />
-            <Route path="/State" element={<State />} />
+            <Route path="/Display" element={<Display />} />
             <Route path="/Message" element={<Message />} />
             <Route path="/Admin" element={<App />} />
             <Route path="/Resultdata" element={<Result />} />

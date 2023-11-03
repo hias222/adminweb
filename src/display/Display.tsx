@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './Settings.css';
+import './Display.css';
 import Navigation from '../common/Navigation';
-import Upload from './upload/Upload';
 import { Button, Container, Divider, Grid, Paper, Typography } from '@mui/material';
-import DatamappingInfo from '../components/DatamappingInfo';
 
 
-const Settings: React.FC = () => {
+const Display: React.FC = () => {
 
   const [eventType, setEventType] = useState([]);
   const [startList, setStartList] = useState([]);
@@ -37,21 +35,9 @@ const Settings: React.FC = () => {
   return (
     <Container maxWidth='md' key={1234}>
       <Navigation
-        numberPage={2} />
+        numberPage={5} />
 
       <Grid container spacing={1}>
-        <Grid item xs={12}>
-          <Upload
-            message='Hello'
-          />
-          <p>
-            mosquitto_sub -h localhost -t error
-          </p>
-        </Grid>
-
-        <Grid item xs={12}>
-          <Divider />
-        </Grid>
 
         <Grid item xs={4}>
           <Button variant="contained" onClick={getLenexCode()} key={12456}>GetState Lenex
@@ -77,4 +63,4 @@ const Settings: React.FC = () => {
   );
 }
 
-export default Settings;
+export default Display;
