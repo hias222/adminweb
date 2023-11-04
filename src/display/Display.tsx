@@ -279,10 +279,11 @@ const Display: React.FC = () => {
           label="brightness"
           onChange={setBrightnessValue}
         >
-          <MenuItem value={0.6}>0.6 - innen</MenuItem>
-          <MenuItem value={1}>1 leicht</MenuItem>
-          <MenuItem value={2}>2 mittel</MenuItem>
-          <MenuItem value={3}>3 hell</MenuItem>
+          <MenuItem value={0.4}>0.4 innen</MenuItem>
+          <MenuItem value={0.6}>0.6 neutral</MenuItem>
+          <MenuItem value={1}>1 normal</MenuItem>
+          <MenuItem value={2}>2 hell</MenuItem>
+          <MenuItem value={3}>3 sehr hell</MenuItem>
         </Select>
         </Grid>
 
