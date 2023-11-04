@@ -1,13 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import './Display.css';
 import Navigation from '../common/Navigation';
-import { Button, Container, Divider, Grid, Paper, Typography } from '@mui/material';
+import { Button, Container, Divider, Grid, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
 
 
 const Display: React.FC = () => {
 
   const [nuvoRunning, setNuvoRunning] = useState("");
   const [nuvoStatus, setNuvoStatus] = useState("");
+  const [nuvoIP, setNuvoIP] = useState("");
+  const [brightness, setBrightness] = useState("1");
+  const [px, setPx] = useState(1);
+  const [py, setPy] = useState(2);
+  const [rotation, setRotation] = useState(0);
+  const [screennumber, setScreennumber] = useState(0);
+
+  let nuvoParameters = {
+    "brightness": brightness,
+    "px": px,
+    "py": py,
+    "rotation": rotation,
+    "screennumber": screennumber
+  }
 
   let staticURL = process.env.REACT_APP_DATAMAPPING_INTERNAL_URL !== undefined ? process.env.REACT_APP_DATAMAPPING_INTERNAL_URL : 'localhost'
   let backendConnect = process.env.REACT_APP_DATAMAPPING_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port : staticURL;
@@ -37,6 +51,18 @@ const Display: React.FC = () => {
       .catch(console.log)
   }
 
+  function getNuvoIP() {
+    console.log(backendConnect + "/main/ip")
+    fetch(backendConnect + "/main/ip")
+      .then(res =>
+        res.text()
+      )
+      .then((data) => {
+        return setNuvoIP(data);
+      })
+      .catch(console.log)
+  }
+
   function stopNuvo() {
     console.log(backendConnect + "/main/stop")
     fetch(backendConnect + "/main/stop", {
@@ -59,13 +85,29 @@ const Display: React.FC = () => {
       .catch(console.log)
   }
 
-  let nuvoParameters = {
-    "brightness" : "1",
-    "px": 1,
-    "py": 2,
-    "rotation": 0,
-    "screennumber": 0
-    }
+  function startChrom() {
+    console.log(backendConnect + "/main/startchromium")
+    fetch(backendConnect + "/main/startchromium", {
+      method: 'POST'
+    })
+      .then(res =>
+        console.log(res.text())
+      )
+      .catch(console.log)
+  }
+
+  function stopChrom() {
+    console.log(backendConnect + "/main/stopchromium")
+    fetch(backendConnect + "/main/stopchromium", {
+      method: 'POST'
+    })
+      .then(res =>
+        console.log(res.text())
+      )
+      .catch(console.log)
+  }
+
+ 
 
 
   function startNuvoDetail() {
@@ -88,6 +130,10 @@ const Display: React.FC = () => {
     getNuvoState()
   };
 
+  const getIPData = () => (event: any) => {
+    getNuvoIP()
+  };
+
   const sendDetailStart = () => (event: any) => {
     startNuvoDetail()
   };
@@ -100,8 +146,44 @@ const Display: React.FC = () => {
     stopNuvo()
   };
 
+  const sendChromStart = () => (event: any) => {
+    startChrom()
+  };
+
+  const sendChromStop = () => (event: any) => {
+    stopChrom()
+  };
+
+  const setPxValue = (event: SelectChangeEvent) => {
+    console.log("setPxValue")
+    setPx(parseInt(event.target.value))
+  };
+
+  const setPyValue = (event: SelectChangeEvent) => {
+    console.log("setPyValue")
+    setPy(parseInt(event.target.value))
+  };
+
+
+  const setBrightnessValue = (event: SelectChangeEvent) => {
+    console.log("setBrightnessValue")
+    setBrightness(event.target.value)
+  };
+
   const getButtonNuvoRunning = () => (event: any) => {
     getNuvoRunning()
+  };
+
+  const setGross = () => (event: any) => {
+    setBrightness("3")
+    setPx(4)
+    setPy(3)
+  };
+
+  const setKlein = () => (event: any) => {
+    setBrightness("2")
+    setPx(1)
+    setPy(2)
   };
 
   useEffect(() => {
@@ -116,52 +198,160 @@ const Display: React.FC = () => {
         numberPage={1} />
 
       <Grid container spacing={1}>
-        <Grid item xs={2}>
-          <Button variant="contained" onClick={getLenexCode()} key={12456}>GetState
+
+
+        <Grid item xs={6} sm={4} md={3}>
+          <Button variant="contained" onClick={sendNuvoStart()} key={9456}>Start Basic
           </Button>
         </Grid>
-        <Grid item xs={10}>
-          <Paper elevation={3} >
-            <Typography variant="subtitle1" >
-              NuvoRunning: {nuvoStatus}
-            </Typography>
-          </Paper>
+
+        <Grid item xs={6} sm={4} md={3}>
+          <Button variant="contained" onClick={sendDetailStart()} key={14456}>Display Start
+          </Button>
         </Grid>
 
+        <Grid item xs={6} sm={4} md={3}>
+          <Button variant="contained" onClick={sendNuvoStop()} key={12456}>Display Stop
+          </Button>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Divider />
+        </Grid>
+
+        <Grid item xs={6} sm={4} md={3}>
+          <Button variant="contained" onClick={sendChromStart()} key={77456}>Chrome Start
+          </Button>
+        </Grid>
+
+        <Grid item xs={6} sm={4} md={3}>
+          <Button variant="contained" onClick={sendChromStop()} key={14456}>Chrome Stop
+          </Button>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Divider />
+        </Grid>
+
+        <Grid item xs={6} sm={4} md={2}>
+          PX: 
+        <Select
+          labelId="x"
+          id="px1"
+          value={px.toString()}
+          label="px"
+          onChange={setPxValue}
+        >
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={4}>4</MenuItem>
+          <MenuItem value={5}>5</MenuItem>
+        </Select>
+        </Grid>
+
+       
+
+        <Grid item xs={6} sm={4} md={2}>
+          PY:
+        <Select
+          labelId="py"
+          id="py1"
+          value={py.toString()}
+          label="py"
+          onChange={setPyValue}
+        >
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={4}>4</MenuItem>
+          <MenuItem value={5}>5</MenuItem>
+        </Select>
+        </Grid>
+
+
+        <Grid item xs={6} sm={4} md={4}>
+          Brightness: 
+        <Select
+          labelId="x"
+          id="BrightnessValue"
+          value={brightness}
+          label="brightness"
+          onChange={setBrightnessValue}
+        >
+          <MenuItem value={0.6}>0.6 - innen</MenuItem>
+          <MenuItem value={1}>1 leicht</MenuItem>
+          <MenuItem value={2}>2 mittel</MenuItem>
+          <MenuItem value={3}>3 hell</MenuItem>
+        </Select>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Divider />
+        </Grid>
+
+        <Grid item xs={2}>
+          <Button variant="contained" onClick={setKlein()} key={12456}>set klein
+          </Button>
+        </Grid>
+
+        <Grid item xs={2}>
+          <Button variant="contained" onClick={setGross()} key={12456}>set groß
+          </Button>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Divider />
+        </Grid>
 
         <Grid item xs={2}>
           <Button variant="contained" onClick={getButtonNuvoRunning()} key={12456}>Running
           </Button>
         </Grid>
         <Grid item xs={10}>
-          <Paper elevation={3} >
-            <Typography variant="subtitle1" >
-              NuvoRunning: {nuvoRunning}
-            </Typography>
-          </Paper>
+          <TextField
+            disabled
+            id="outlined-disabled"
+            label="NuvoRunning"
+            defaultValue="please reload"
+            value={nuvoRunning}
+          />
         </Grid>
 
-        <Grid item xs={4}>
-          <Button variant="contained" onClick={sendNuvoStart()} key={9456}>Start
+        <Grid item xs={2}>
+          <Button variant="contained" onClick={getLenexCode()} key={12456}>GetState
           </Button>
         </Grid>
-
-        <Grid item xs={4}>
-          <Button variant="contained" onClick={sendDetailStart()} key={14456}>DetailStart
-          </Button>
+        <Grid item xs={10}>
+          <TextField
+            disabled
+            id="outlined-disabled"
+            label="nuvoStatus"
+            defaultValue="please reload"
+            multiline
+            maxRows={4}
+            fullWidth
+            value={nuvoStatus}
+          />
         </Grid>
 
-        <Grid item xs={4}>
-          <Button variant="contained" onClick={sendNuvoStop()} key={12456}>Stop
+        <Grid item xs={2}>
+          <Button variant="contained" onClick={getIPData()} key={12456}>GetIP
           </Button>
         </Grid>
+        <Grid item xs={10}>
+          <TextField
+            disabled
+            id="outlined-disabled"
+            label="IP"
+            defaultValue="please reload"
+            multiline
+            maxRows={6}
+            fullWidth
+            value={nuvoIP}
+          />
+        </Grid>
 
-
-      </Grid>
-
-
-      <Grid item xs={12}>
-        <Divider />
       </Grid>
 
     </Container >
