@@ -50,7 +50,7 @@ class Hiit extends React.Component<Props, State> {
     type: "hiit",
     event: "config",
     departure: "55",
-    lane: "1" ,
+    lane: "1",
     gap: "5",
     varianz: "1",
     rows: this.rows
@@ -78,10 +78,10 @@ class Hiit extends React.Component<Props, State> {
 
   sendHeader = (mode: string) => (event: any) => {
     console.log(this.backendConnect + " departure " + this.state.departure + ' at ' + mode)
-    var newMode = {mode: mode}
+    var newMode = { mode: mode }
     var oldState = this.state
-    var newState = {...oldState, newMode}
-    this.setState({mode: mode})
+    var newState = { ...oldState, newMode }
+    this.setState({ mode: mode })
 
     fetch(this.backendConnect, {
       method: 'post',
@@ -105,7 +105,7 @@ class Hiit extends React.Component<Props, State> {
 
   startHiit = (mode: string) => (event: any) => {
     console.log(this.backendConnect + " deaparture " + this.state.departure)
-    this.setState({mode: 'data'})
+    this.setState({ mode: 'data' })
     var newEvent = { "type": "hiit", "event": mode, "lane": this.state.lane }
     fetch(this.backendConnect, {
       method: 'post',
@@ -114,6 +114,21 @@ class Hiit extends React.Component<Props, State> {
     })
       .catch(console.log)
     //
+  };
+
+  startAllHiit = (mode: string) => (event: any) => {
+    console.log(this.backendConnect + " deaparture " + this.state.departure)
+    this.setState({ mode: 'data' })
+    for (var i = 1; i < 6; i++) {
+      var newEvent = { "type": "hiit", "event": mode, "lane": i }
+      fetch(this.backendConnect, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newEvent)
+      })
+        .catch(console.log)
+      //
+    }
   };
 
   handleChange = (val: string) => (event: any) => {
@@ -152,7 +167,7 @@ class Hiit extends React.Component<Props, State> {
             <Card >
               <CardContent>
                 <Grid container spacing={1} alignItems="center">
-                <Grid item xs={6} sm={4} md={4}>
+                  <Grid item xs={6} sm={4} md={4}>
                     <TextField fullWidth
                       id="lane"
                       label="lane"
@@ -232,8 +247,16 @@ class Hiit extends React.Component<Props, State> {
                     <Button variant="contained" fullWidth onClick={this.startHiit('start')}>Start
                       <StartIcon /></Button>
                   </Grid>
+                  <Grid item xs={12} sm={6} md={6}>
+                    <Button variant="contained" fullWidth onClick={this.startAllHiit('start')}>Start All
+                      <StartIcon /></Button>
+                  </Grid>
                   <Grid item xs={12} sm={5} md={6}>
                     <Button variant="contained" fullWidth onClick={this.startHiit('stop')}>Stop
+                      <StartIcon /></Button>
+                  </Grid>
+                  <Grid item xs={12} sm={5} md={6}>
+                    <Button variant="contained" fullWidth onClick={this.startAllHiit('stop')}>Stop All
                       <StartIcon /></Button>
                   </Grid>
                 </Grid>
