@@ -19,7 +19,6 @@ export default function Navigation (props: {
 
   return (
     <BottomNavigation
-      
       onChange={(event, newValue) => {
         setValue(newValue);
         console.log("button " + newValue)
