@@ -60,6 +60,50 @@ class Message extends React.Component<Props, State> {
     //
   };
 
+  sendNextHeat = () => (event: any) => {
+
+    let new_heat = String(Number(this.state.heat) + 1);
+
+    this.setState({
+      heat: new_heat
+    });
+
+    console.log(this.backendConnect + " header " + this.state.event + " " + new_heat)
+
+    fetch(this.backendConnect, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        "message": "header " + this.state.event + " " + new_heat
+      })
+    })
+      .catch(console.log)
+    //
+  };
+
+  sendNextEvent = () => (event: any) => {
+
+    let new_event = String(Number(this.state.event) + 1);
+
+    this.setState({
+      event: new_event,
+      heat: "1"
+    });
+
+    console.log(this.backendConnect + " header " + new_event + " " + "1")
+
+    fetch(this.backendConnect, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        "message": "header " + new_event + " " + "1"
+      })
+    })
+      .catch(console.log)
+    //
+  };
+
+
   sendLane = () => (event: any) => {
     console.log(this.backendConnect + " lane " + this.state.lane + " 1:11,11 " + this.state.rank)
 
@@ -118,7 +162,7 @@ class Message extends React.Component<Props, State> {
                   </Grid>
                 </Grid>
 
-                <Grid container spacing={1} alignItems="center">
+                <Grid container spacing={2} alignItems="center">
                   <Grid item xs={6} sm={4} md={4}>
                     <TextField fullWidth
                       id="wk-nr"
@@ -126,6 +170,7 @@ class Message extends React.Component<Props, State> {
                       margin="normal"
                       variant="outlined"
                       onChange={this.handleChange('event')}
+                      value={this.state.event}
                     />
                   </Grid>
                   <Grid item xs={6} sm={4} md={4}>
@@ -135,6 +180,7 @@ class Message extends React.Component<Props, State> {
                       margin="normal"
                       variant="outlined"
                       onChange={this.handleChange('heat')}
+                      value={this.state.heat}
                     />
                   </Grid>
                   <Grid item xs={12} sm={4} md={4}>
@@ -142,6 +188,19 @@ class Message extends React.Component<Props, State> {
                       <StartIcon /></Button>
                   </Grid>
                 </Grid>
+
+
+                <Grid container spacing={2} alignItems="center">
+                  <Grid item xs={6} sm={4} md={4}>
+                    <Button variant="contained" fullWidth onClick={this.sendNextEvent()}>NextEvent
+                      <StartIcon /></Button>
+                  </Grid>
+                                    <Grid item xs={6} sm={4} md={4}>
+                    <Button variant="contained" fullWidth onClick={this.sendNextHeat()}>NextHeat
+                      <StartIcon /></Button>
+                  </Grid>
+                </Grid>
+
               </CardContent>
             </Card>
           </Grid>
